@@ -1,2 +1,1 @@
-def print_msg(msg):
-    print(msg)
+from . import model
