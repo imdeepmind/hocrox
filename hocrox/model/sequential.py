@@ -1,3 +1,4 @@
+import numpy as np
 from prettytable import PrettyTable
 
 
@@ -9,6 +10,9 @@ class Sequential:
     def add(self, layer):
         if self.__frozen:
             raise ValueError("Model is frozen")
+
+        if not (hasattr(layer, "apply_layer") and hasattr(layer, "get_description")):
+            raise ValueError("The layer is not a valid layer")
 
         self.__layers.append(layer)
 
@@ -31,8 +35,24 @@ class Sequential:
 
         return str(t)
 
-    def transform(self):
-        pass
+    def transform(self, images):
+        if not isinstance(images, list):
+            raise ValueError(
+                "Invalid images, images needed to be a list of numpy array"
+            )
+
+        transformed_images = []
+
+        for image in images:
+            if not isinstance(image, np.ndarray):
+                raise ValueError("Invalid image, image needed to an numpy array")
+
+            for layer in self.__layers:
+                image = layer.apply_layer(image)
+
+            transformed_images.append(image)
+
+        return transformed_images
 
     def transform_generator(self):
         pass

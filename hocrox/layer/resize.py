@@ -16,6 +16,3 @@ class Resize:
             f"{self.__name}({self.__type})",
             f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
         )
-
-    def get_layer(self):
-        return self
