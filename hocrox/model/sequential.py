@@ -1,14 +1,33 @@
 import pickle
 import inspect
 import numpy as np
+import cv2
+import os
 
 from prettytable import PrettyTable
 
 
 class Sequential:
-    def __init__(self):
+    def __init__(self, read_dir, output_dir):
+        if not isinstance(read_dir, str):
+            raise ValueError("Please provide a valid read_dir path")
+
+        if not isinstance(output_dir, str):
+            raise ValueError("Please provide a valid output_dir path")
+
         self.__frozen = False
         self.__layers = []
+        self.__read_dir = read_dir
+        self.__output_dir = output_dir
+
+    def read_image_gen(self, images):
+        for image in images:
+            img = cv2.imread(os.path.join(self.__read_dir, image), 1)
+
+            yield image, img
+
+    def save_image(self, path, image):
+        cv2.imwrite(os.path.join(self.__output_dir, path), image)
 
     def add(self, layer):
         if self.__frozen:
@@ -46,39 +65,15 @@ class Sequential:
 
         return str(t)
 
-    def transform(self, images):
-        if not isinstance(images, list):
-            raise ValueError(
-                "Invalid images, images needed to be a list of numpy array"
-            )
+    def transform(self):
+        images = os.listdir(self.__read_dir)
+        gen = self.read_image_gen(images)
 
-        transformed_images = []
-
-        for image in images:
-            if not isinstance(image, np.ndarray):
-                raise ValueError("Invalid image, image needed to an numpy array")
-
+        for path, image in gen:
             for layer in self.__layers:
                 image = layer.apply_layer(image)
 
-            transformed_images.append(image)
-
-        return transformed_images
-
-    def transform_generator(self, image_gen):
-        if not inspect.isgenerator(image_gen):
-            raise ValueError(
-                "Invalid generator, image_gen needed to be a generator function"
-            )
-
-        for image in image_gen:
-            if not isinstance(image, np.ndarray):
-                raise ValueError("Invalid image, image needed to an numpy array")
-
-            for layer in self.__layers:
-                image = layer.apply_layer(image)
-
-            yield image
+            self.save_image(path, image)
 
     def freeze(self):
         self.__frozen = True
