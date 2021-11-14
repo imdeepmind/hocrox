@@ -6,13 +6,15 @@ class Resize:
         self.__dim = dim
         self.__interpolation = interpolation
         self.__name = name
-        self.__type = "resize"
+
+        self.type = "resize"
+        self.supported_parent_layer = ["resize"]
 
     def apply_layer(self, img):
         return cv2.resize(img, self.__dim, self.__interpolation)
 
     def get_description(self):
         return (
-            f"{self.__name}({self.__type})",
+            f"{self.__name}({self.type})",
             f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
         )
