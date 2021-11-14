@@ -1,4 +1,5 @@
 import pickle
+import inspect
 import numpy as np
 
 from prettytable import PrettyTable
@@ -56,8 +57,20 @@ class Sequential:
 
         return transformed_images
 
-    def transform_generator(self):
-        pass
+    def transform_generator(self, image_gen):
+        if not inspect.isgenerator(image_gen):
+            raise ValueError(
+                "Invalid generator, image_gen needed to be a generator function"
+            )
+
+        for image in image_gen:
+            if not isinstance(image, np.ndarray):
+                raise ValueError("Invalid image, image needed to an numpy array")
+
+            for layer in self.__layers:
+                image = layer.apply_layer(image)
+
+            yield image
 
     def freeze(self):
         self.__frozen = True
