@@ -63,12 +63,18 @@ class Sequential:
         self.__frozen = True
 
     def save(self, path):
+        if not isinstance(path, str):
+            raise ValueError("Path is not valid")
+
         model_config = {"frozen": self.__frozen, "layers": self.__layers}
 
         with open(path, "wb") as f:
             pickle.dump(model_config, f)
 
     def load(self, path):
+        if not isinstance(path, str):
+            raise ValueError("Path is not valid")
+
         with open(path, "rb") as f:
             model_config = pickle.load(f)
 
