@@ -9,6 +9,7 @@ class Resize:
 
         self.type = "resize"
         self.supported_parent_layer = ["resize"]
+        self.bypass_validation = False
 
     def apply_layer(self, img):
         return cv2.resize(img, self.__dim, self.__interpolation)

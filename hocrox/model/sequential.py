@@ -17,11 +17,11 @@ class Sequential:
         if not (hasattr(layer, "apply_layer") and hasattr(layer, "get_description")):
             raise ValueError("The layer is not a valid layer")
 
-        if len(self.__layers) > 0:
+        if len(self.__layers) > 0 and not layer.bypass_validation:
             previous_layer_type = self.__layers[-1].type
             if previous_layer_type not in layer.supported_parent_layer:
                 raise ValueError(
-                    f"The layer of type '{layer.type}' does not support layer of type '{previous_layer_type}' as a parent layer"
+                    f"The layer of type '{layer.type}' does not support layer of type '{previous_layer_type}' as parent layer"
                 )
 
         self.__layers.append(layer)
