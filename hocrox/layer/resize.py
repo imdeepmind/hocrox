@@ -15,7 +15,4 @@ class Resize:
         return cv2.resize(img, self.__dim, self.__interpolation)
 
     def get_description(self):
-        return (
-            f"{self.__name}({self.type})",
-            f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
-        )
+        return (f"{self.__name}({self.type})", f"Dim: {self.__dim}, Interpolation: {self.__interpolation}")

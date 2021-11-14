@@ -49,18 +49,9 @@ class Sequential:
         t = PrettyTable(["Index", "Name", "Parameters"])
 
         for index, layer in enumerate(self.__layers):
-            (
-                name,
-                parameters,
-            ) = layer.get_description()
+            (name, parameters) = layer.get_description()
 
-            t.add_row(
-                [
-                    f"#{index+1}",
-                    name,
-                    parameters,
-                ]
-            )
+            t.add_row([f"#{index+1}", name, parameters])
 
         return str(t)
 
