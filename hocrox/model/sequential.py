@@ -1,8 +1,7 @@
 import pickle
-import inspect
-import numpy as np
 import cv2
 import os
+import numpy as np
 
 from prettytable import PrettyTable
 
@@ -27,7 +26,7 @@ class Sequential:
             yield image, img
 
     def save_image(self, path, image):
-        cv2.imwrite(os.path.join(self.__output_dir, path), image)
+        np.save(os.path.join(self.__output_dir, path + ".npy"), image)
 
     def add(self, layer):
         if self.__frozen:
