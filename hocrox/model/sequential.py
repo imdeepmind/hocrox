@@ -1,3 +1,5 @@
+"""Sequential model for Hocrox."""
+
 import pickle
 import cv2
 import os
@@ -7,7 +9,18 @@ from prettytable import PrettyTable
 
 
 class Sequential:
+    """Sequential model for Hocrox."""
+
     def __init__(self, read_dir, output_dir):
+        """Init method for the Sequential model.
+
+        :param read_dir: path where the images are stored
+        :type read_dir: str
+        :param output_dir: path where the output needed to be stored
+        :type output_dir: str
+        :raises ValueError: when the read_dir is not valid
+        :raises ValueError: when the output_dir is not valid
+        """
         if not isinstance(read_dir, str):
             raise ValueError("Please provide a valid read_dir path")
 
@@ -19,16 +32,38 @@ class Sequential:
         self.__read_dir = read_dir
         self.__output_dir = output_dir
 
-    def read_image_gen(self, images):
+    def __read_image_gen(self, images):
+        """Create a generator function for the image.
+
+        :param images: list of all images
+        :type images: list of str
+        :yield: one image array
+        :rtype: ndarray
+        """
         for image in images:
             img = cv2.imread(os.path.join(self.__read_dir, image), 1)
 
             yield image, img
 
-    def save_image(self, path, image):
+    def __save_image(self, path, image):
+        """Save the image as a numpy ndarray.
+
+        :param path: image name path
+        :type path: str
+        :param image: image array
+        :type image: ndarray
+        """
         np.save(os.path.join(self.__output_dir, path + ".npy"), image)
 
     def add(self, layer):
+        """Add new layers to the model.
+
+        :param layer: layer to add in the model
+        :type layer: class
+        :raises ValueError: if the model is frozen
+        :raises ValueError: if the layer is not valid
+        :raises ValueError: if the layer is not valid
+        """
         if self.__frozen:
             raise ValueError("Model is frozen")
 
@@ -46,6 +81,11 @@ class Sequential:
         self.__layers.append(layer)
 
     def summary(self):
+        """Generate the summary for the model.
+
+        :return: summary of the model
+        :rtype: str
+        """
         t = PrettyTable(["Index", "Name", "Parameters"])
 
         for index, layer in enumerate(self.__layers):
@@ -56,19 +96,27 @@ class Sequential:
         return str(t)
 
     def transform(self):
+        """Transform the images using the layers."""
         images = os.listdir(self.__read_dir)
-        gen = self.read_image_gen(images)
+        gen = self.__read_image_gen(images)
 
         for path, image in gen:
             for layer in self.__layers:
                 image = layer.apply_layer(image)
 
-            self.save_image(path, image)
+            self.__save_image(path, image)
 
     def freeze(self):
+        """Freeze the model so it cannot be edited."""
         self.__frozen = True
 
     def save(self, path):
+        """Save the model to filesystem.
+
+        :param path: path where the model will be stored
+        :type path: str
+        :raises ValueError: if the model is not valid
+        """
         if not isinstance(path, str):
             raise ValueError("Path is not valid")
 
@@ -78,6 +126,12 @@ class Sequential:
             pickle.dump(model_config, f)
 
     def load(self, path):
+        """Load model from fiesystem.
+
+        :param path: path where the model is stored
+        :type path: str
+        :raises ValueError: if the path is not valid
+        """
         if not isinstance(path, str):
             raise ValueError("Path is not valid")
 
