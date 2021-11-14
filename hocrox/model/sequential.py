@@ -1,4 +1,6 @@
+import pickle
 import numpy as np
+
 from prettytable import PrettyTable
 
 
@@ -60,8 +62,15 @@ class Sequential:
     def freeze(self):
         self.__frozen = True
 
-    def save(self):
-        pass
+    def save(self, path):
+        model_config = {"frozen": self.__frozen, "layers": self.__layers}
 
-    def load(self):
-        pass
+        with open(path, "wb") as f:
+            pickle.dump(model_config, f)
+
+    def load(self, path):
+        with open(path, "rb") as f:
+            model_config = pickle.load(f)
+
+            self.__layers = model_config["layers"]
+            self.__frozen = model_config["frozen"]
