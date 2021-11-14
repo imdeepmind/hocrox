@@ -34,7 +34,7 @@ filename =
     *.py
 
 disable-noqa = False
-max-line-length = 88
+max-line-length = 120
 max-complexity = 15
 hang-closing = True
 

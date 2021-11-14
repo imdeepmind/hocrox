@@ -20,8 +20,9 @@ class Sequential:
         if len(self.__layers) > 0 and not layer.bypass_validation:
             previous_layer_type = self.__layers[-1].type
             if previous_layer_type not in layer.supported_parent_layer:
+                tp = layer.type
                 raise ValueError(
-                    f"The layer of type '{layer.type}' does not support layer of type '{previous_layer_type}' as parent layer"
+                    f"The layer of type '{tp}' does not support layer of type '{previous_layer_type}' as parent layer"
                 )
 
         self.__layers.append(layer)
