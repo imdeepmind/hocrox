@@ -37,10 +37,10 @@ class Rotate:
             raise ValueError(f"The value {name} for the argument name is not valid")
 
         self.__angle = angle
-        self.__name = name if name else "Resize Layer"
+        self.__name = name if name else "Rotate Layer"
 
-        self.type = "resize"
-        self.supported_parent_layer = ["resize", "greyscale"]
+        self.type = "rotate"
+        self.supported_parent_layer = ["resize", "greyscale", "rotate"]
         self.bypass_validation = False
 
     def apply_layer(self, img):
