@@ -3,3 +3,4 @@
 from .resize import Resize
 from .grayscale import Grayscale
 from .rotate import Rotate
+from .crop import Crop
