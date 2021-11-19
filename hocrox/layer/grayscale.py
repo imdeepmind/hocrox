@@ -17,7 +17,7 @@ class Grayscale:
         self.__name = name if name else "Grayscale Layer"
 
         self.type = "greyscale"
-        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop"]
+        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding"]
         self.bypass_validation = False
 
     def apply_layer(self, img):
