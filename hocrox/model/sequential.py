@@ -84,7 +84,7 @@ class Sequential:
 
         for path, image in gen:
             for layer in self.__layers:
-                image = layer.apply_layer(image)
+                image = layer.apply_layer(image, path)
 
     def freeze(self):
         """Freeze the model so it cannot be edited."""
