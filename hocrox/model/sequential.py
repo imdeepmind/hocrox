@@ -54,7 +54,6 @@ class Sequential:
         :type image: ndarray
         """
         np.save(os.path.join(self.__output_dir, path + ".npy"), image)
-        cv2.imwrite(os.path.join(self.__output_dir, path), image)
 
     def add(self, layer):
         """Add new layers to the model.
