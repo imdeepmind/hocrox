@@ -38,10 +38,10 @@ class Resize:
             self.__interpolation = cv2.INTER_CUBIC
 
         self.type = "resize"
-        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding"]
+        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
         self.bypass_validation = False
 
-    def apply_layer(self, img):
+    def apply_layer(self, img, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
