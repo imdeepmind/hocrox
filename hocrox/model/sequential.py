@@ -3,7 +3,6 @@
 import pickle
 import cv2
 import os
-import numpy as np
 
 from prettytable import PrettyTable
 
@@ -11,26 +10,19 @@ from prettytable import PrettyTable
 class Sequential:
     """Sequential model for Hocrox."""
 
-    def __init__(self, read_dir, output_dir):
+    def __init__(self, read_dir):
         """Init method for the Sequential model.
 
         :param read_dir: path where the images are stored
         :type read_dir: str
-        :param output_dir: path where the output needed to be stored
-        :type output_dir: str
         :raises ValueError: when the read_dir is not valid
-        :raises ValueError: when the output_dir is not valid
         """
         if not isinstance(read_dir, str):
             raise ValueError("Please provide a valid read_dir path")
 
-        if not isinstance(output_dir, str):
-            raise ValueError("Please provide a valid output_dir path")
-
         self.__frozen = False
         self.__layers = []
         self.__read_dir = read_dir
-        self.__output_dir = output_dir
 
     def __read_image_gen(self, images):
         """Create a generator function for the image.
@@ -44,16 +36,6 @@ class Sequential:
             img = cv2.imread(os.path.join(self.__read_dir, image), 1)
 
             yield image, img
-
-    def __save_image(self, path, image):
-        """Save the image as a numpy ndarray.
-
-        :param path: image name path
-        :type path: str
-        :param image: image array
-        :type image: ndarray
-        """
-        np.save(os.path.join(self.__output_dir, path + ".npy"), image)
 
     def add(self, layer):
         """Add new layers to the model.
@@ -103,8 +85,6 @@ class Sequential:
         for path, image in gen:
             for layer in self.__layers:
                 image = layer.apply_layer(image)
-
-            self.__save_image(path, image)
 
     def freeze(self):
         """Freeze the model so it cannot be edited."""
