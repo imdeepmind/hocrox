@@ -16,7 +16,7 @@ class Save:
         if path and not isinstance(path, str):
             raise ValueError(f"The value {path} for the argument path is not valid")
 
-        if format in ("npy", "img"):
+        if format not in ("npy", "img"):
             raise ValueError(f"The value {format} for the argument format is not valid")
 
         if name and not isinstance(name, str):
@@ -38,7 +38,7 @@ class Save:
         :return: transformed image
         :rtype: ndarray
         """
-        filename = f"{self.__name}_{self.type}_{name}"
+        filename = f"{self.__name}_{name}"
         if self.__format == "npy":
             np.save(os.path.join(self.__path, filename + ".npy"), img)
         else:
