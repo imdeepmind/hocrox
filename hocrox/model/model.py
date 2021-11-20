@@ -1,4 +1,4 @@
-"""Sequential model for Hocrox."""
+"""Model model for Hocrox."""
 
 import pickle
 import cv2
@@ -7,11 +7,11 @@ import os
 from prettytable import PrettyTable
 
 
-class Sequential:
-    """Sequential model for Hocrox."""
+class Model:
+    """Model model for Hocrox."""
 
     def __init__(self, read_dir):
-        """Init method for the Sequential model.
+        """Init method for the Model model.
 
         :param read_dir: path where the images are stored
         :type read_dir: str
