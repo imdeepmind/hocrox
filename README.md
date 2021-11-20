@@ -1,6 +1,5 @@
 # Hocrox
-
-## An image preprocessing and augmentation library with Keras like interface.
+An image preprocessing and augmentation library with Keras like interface.
 
 # Introduction
 
@@ -47,7 +46,7 @@ Documentation for Hocrox is available [here](https://imdeepmind.com/hocrox/).
 
 Here is one simple pipeline for preprocessing images.
 
-```
+```python
 from hocrox.model import Model
 from hocrox.layer.preprocessing import Resize, Grayscale, Padding, Save
 
