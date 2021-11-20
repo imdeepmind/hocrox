@@ -51,7 +51,7 @@ class Padding:
         self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
         self.bypass_validation = False
 
-    def apply_layer(self, img, name=None):
+    def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
@@ -59,9 +59,16 @@ class Padding:
         :return: transformed image
         :rtype: ndarray
         """
-        return cv2.copyMakeBorder(
-            img, self.__top, self.__bottom, self.__left, self.__right, cv2.BORDER_CONSTANT, value=self.__color
-        )
+        transformed_images = []
+
+        for image in images:
+            transformed_images.append(
+                cv2.copyMakeBorder(
+                    image, self.__top, self.__bottom, self.__left, self.__right, cv2.BORDER_CONSTANT, value=self.__color
+                )
+            )
+
+        return transformed_images
 
     def get_description(self):
         """Return layers details for the model to generate summary.

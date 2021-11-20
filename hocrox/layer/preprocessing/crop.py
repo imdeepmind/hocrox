@@ -43,7 +43,7 @@ class Crop:
         self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
         self.bypass_validation = False
 
-    def apply_layer(self, img, name=None):
+    def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
@@ -51,7 +51,12 @@ class Crop:
         :return: transformed image
         :rtype: ndarray
         """
-        return img[self.__x : self.__x + self.__w, self.__y : self.__y + self.__h]
+        transformed_images = []
+
+        for image in images:
+            transformed_images.append(image[self.__x : self.__x + self.__w, self.__y : self.__y + self.__h])
+
+        return transformed_images
 
     def get_description(self):
         """Return layers details for the model to generate summary.

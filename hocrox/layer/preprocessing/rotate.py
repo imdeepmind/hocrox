@@ -43,7 +43,7 @@ class Rotate:
         self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
         self.bypass_validation = False
 
-    def apply_layer(self, img, name=None):
+    def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
@@ -51,7 +51,12 @@ class Rotate:
         :return: transformed image
         :rtype: ndarray
         """
-        return self.__rotate_image(img, self.__angle)
+        transformed_images = []
+
+        for image in images:
+            transformed_images.append(self.__rotate_image(image, self.__angle))
+
+        return transformed_images
 
     def get_description(self):
         """Return layers details for the model to generate summary.

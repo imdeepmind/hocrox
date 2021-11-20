@@ -41,7 +41,7 @@ class Resize:
         self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
         self.bypass_validation = False
 
-    def apply_layer(self, img, name=None):
+    def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
@@ -49,7 +49,12 @@ class Resize:
         :return: transformed image
         :rtype: ndarray
         """
-        return cv2.resize(img, self.__dim, self.__interpolation)
+        transformed_images = []
+
+        for image in images:
+            transformed_images.append(cv2.resize(image, self.__dim, self.__interpolation))
+
+        return transformed_images
 
     def get_description(self):
         """Return layers details for the model to generate summary.
