@@ -30,7 +30,7 @@ class Save:
         self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
         self.bypass_validation = False
 
-    def apply_layer(self, img, name=None):
+    def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
@@ -38,13 +38,15 @@ class Save:
         :return: transformed image
         :rtype: ndarray
         """
-        filename = f"{self.__name}_{name}"
-        if self.__format == "npy":
-            np.save(os.path.join(self.__path, filename + ".npy"), img)
-        else:
-            cv2.imwrite(os.path.join(self.__path, filename), img)
+        for index, image in enumerate(images):
+            filename = f"{self.__name}_{index}_{name}"
 
-        return img
+            if self.__format == "npy":
+                np.save(os.path.join(self.__path, filename + ".npy"), image)
+        else:
+            cv2.imwrite(os.path.join(self.__path, filename), image)
+
+        return images
 
     def get_description(self):
         """Return layers details for the model to generate summary.

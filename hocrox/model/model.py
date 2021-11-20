@@ -32,10 +32,10 @@ class Model:
         :yield: one image array
         :rtype: ndarray
         """
-        for image in images:
-            img = cv2.imread(os.path.join(self.__read_dir, image), 1)
+        for path in images:
+            image = cv2.imread(os.path.join(self.__read_dir, path), 1)
 
-            yield image, img
+            yield path, [image]
 
     def add(self, layer):
         """Add new layers to the model.
