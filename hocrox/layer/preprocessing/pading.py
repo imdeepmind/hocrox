@@ -48,7 +48,7 @@ class Padding:
         self.__name = name if name else "Padding Layer"
 
         self.type = "padding"
-        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save"]
+        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save", "horizontal_flip"]
         self.bypass_validation = False
 
     def apply_layer(self, images, name=None):
