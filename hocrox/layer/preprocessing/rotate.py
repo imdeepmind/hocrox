@@ -40,7 +40,16 @@ class Rotate:
         self.__name = name if name else "Rotate Layer"
 
         self.type = "rotate"
-        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save", "horizontal_flip"]
+        self.supported_parent_layer = [
+            "resize",
+            "greyscale",
+            "rotate",
+            "crop",
+            "padding",
+            "save",
+            "horizontal_flip",
+            "vertical_flip",
+        ]
         self.bypass_validation = False
 
     def apply_layer(self, images, name=None):

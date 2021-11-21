@@ -38,7 +38,16 @@ class Resize:
             self.__interpolation = cv2.INTER_CUBIC
 
         self.type = "resize"
-        self.supported_parent_layer = ["resize", "greyscale", "rotate", "crop", "padding", "save", "horizontal_flip"]
+        self.supported_parent_layer = [
+            "resize",
+            "greyscale",
+            "rotate",
+            "crop",
+            "padding",
+            "save",
+            "horizontal_flip",
+            "vertical_flip",
+        ]
         self.bypass_validation = False
 
     def apply_layer(self, images, name=None):
