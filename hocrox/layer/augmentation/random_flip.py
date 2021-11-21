@@ -1,22 +1,29 @@
-"""HorizontalFlip layer for Hocrox."""
+"""RandomFlip layer for Hocrox."""
 import cv2
+import random
 
 
-class HorizontalFlip:
-    """Rotate layer for Hocrox."""
+class RandomFlip:
+    """RandomFlip layer for Hocrox."""
 
-    def __init__(self, name=None):
-        """Init method for the HorizontalFlip layer.
+    def __init__(self, number_of_outputs=1, name=None):
+        """Init method for the RandomFlip layer.
 
+        :param number_of_outputs: number of images to output
+        :type angle: int
         :param name: name of the layer
         :type name: str
         """
+        if isinstance(number_of_outputs, int) and number_of_outputs < 1:
+            raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
+
         if name and not isinstance(name, str):
             raise ValueError(f"The value {name} for the argument name is not valid")
 
-        self.__name = name if name else "HorizontalFlip Layer"
+        self.__number_of_outputs = number_of_outputs
+        self.__name = name if name else "RandomFlip Layer"
 
-        self.type = "horizontal_flip"
+        self.type = "random_flip"
         self.supported_parent_layer = [
             "resize",
             "greyscale",
@@ -42,7 +49,8 @@ class HorizontalFlip:
         transformed_images = []
 
         for image in images:
-            transformed_images.append(cv2.flip(image, 1))
+            flip = random.randint(0, 1)
+            transformed_images.append(cv2.flip(image, flip))
 
         return transformed_images
 
@@ -52,4 +60,4 @@ class HorizontalFlip:
         :return: layer details
         :rtype: str
         """
-        return (f"{self.__name}({self.type})", "-")
+        return (f"{self.__name}({self.type})", f"Number of Outputs: {self.__number_of_outputs}")

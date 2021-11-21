@@ -50,6 +50,7 @@ class Crop:
             "horizontal_flip",
             "vertical_flip",
             "random_rotate",
+            "random_flip",
         ]
         self.bypass_validation = False
 
