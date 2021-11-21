@@ -2,10 +2,10 @@
 
 - Layers
   - Augmentation
-    - RandomFlip
-    - RandomRotate
+    - [RandomFlip](/layers/augmentation/random-flip)
+    - [RandomRotate](/layers/augmentation/random-rotate)
   - Preprocessing
-    - Crop
+    - [Crop](/layers/preprocessing/crop)
     - Grayscale
     - Padding
     - Resize
