@@ -26,6 +26,7 @@ class VerticalFlip:
             "save",
             "horizontal_flip",
             "vertical_flip",
+            "random_rotate",
         ]
         self.bypass_validation = False
 

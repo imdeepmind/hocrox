@@ -54,9 +54,9 @@ class RandomRotate:
         self.__start_angle = start_angle
         self.__end_angle = end_angle
         self.__number_of_outputs = number_of_outputs
-        self.__name = name if name else "Rotate Layer"
+        self.__name = name if name else "Random Rotate Layer"
 
-        self.type = "rotate"
+        self.type = "random_rotate"
         self.supported_parent_layer = [
             "resize",
             "greyscale",
@@ -66,6 +66,7 @@ class RandomRotate:
             "save",
             "horizontal_flip",
             "vertical_flip",
+            "random_rotate",
         ]
         self.bypass_validation = False
 
