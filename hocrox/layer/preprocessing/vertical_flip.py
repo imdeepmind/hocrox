@@ -1,12 +1,12 @@
-"""Grayscale layer for Hocrox."""
+"""VerticalFlip layer for Hocrox."""
 import cv2
 
 
-class Grayscale:
-    """Grayscale layer for Hocrox."""
+class VerticalFlip:
+    """Rotate layer for Hocrox."""
 
     def __init__(self, name=None):
-        """Init method for the Grayscale layer.
+        """Init method for the VerticalFlip layer.
 
         :param name: name of the layer
         :type name: str
@@ -14,9 +14,9 @@ class Grayscale:
         if name and not isinstance(name, str):
             raise ValueError(f"The value {name} for the argument name is not valid")
 
-        self.__name = name if name else "Grayscale Layer"
+        self.__name = name if name else "VerticalFlip Layer"
 
-        self.type = "greyscale"
+        self.type = "vertical_flip"
         self.supported_parent_layer = [
             "resize",
             "greyscale",
@@ -42,7 +42,7 @@ class Grayscale:
         transformed_images = []
 
         for image in images:
-            transformed_images.append(cv2.cvtColor(image, cv2.COLOR_BGR2GRAY))
+            transformed_images.append(cv2.flip(image, 0))
 
         return transformed_images
 

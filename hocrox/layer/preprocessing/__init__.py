@@ -6,3 +6,5 @@ from .rotate import Rotate
 from .crop import Crop
 from .pading import Padding
 from .save import Save
+from .horizontal_flip import HorizontalFlip
+from .vertical_flip import VerticalFlip
