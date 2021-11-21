@@ -24,6 +24,7 @@ six==1.16.0
 snowballstemmer==2.1.0
 toml==0.10.2
 tomli==1.2.2
+tqdm==4.62.3
 typing-extensions==3.10.0.2
 virtualenv==20.10.0
 wcwidth==0.2.5

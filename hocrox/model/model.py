@@ -5,6 +5,7 @@ import cv2
 import os
 
 from prettytable import PrettyTable
+from tqdm import tqdm
 
 
 class Model:
@@ -82,7 +83,7 @@ class Model:
         images = os.listdir(self.__read_dir)
         gen = self.__read_image_gen(images)
 
-        for path, image in gen:
+        for path, image in tqdm(gen, total=len(images)):
             for layer in self.__layers:
                 image = layer.apply_layer(image, path)
 
