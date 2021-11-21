@@ -43,8 +43,8 @@ class Save:
 
             if self.__format == "npy":
                 np.save(os.path.join(self.__path, filename + ".npy"), image)
-        else:
-            cv2.imwrite(os.path.join(self.__path, filename), image)
+            else:
+                cv2.imwrite(os.path.join(self.__path, filename), image)
 
         return images
 

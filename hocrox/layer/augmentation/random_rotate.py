@@ -85,6 +85,6 @@ class RandomRotate:
         """
         return (
             f"{self.__name}({self.type})",
-            f"Start Angle: {self.__start_angle}, End Angle: {self.__end_angle}, Number of Outputs: \
-{self.__number_of_outputs} ",
+            f"Start Angle: {self.__start_angle}, End Angle: {self.__end_angle}, Number of Outputs:"
+            + f"{self.__number_of_outputs} ",
         )
