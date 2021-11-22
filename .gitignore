@@ -1,6 +1,7 @@
 test.py
 img/
 img2/
+ignore/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -120,9 +121,6 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
-
-# mkdocs documentation
-/site
 
 # mypy
 .mypy_cache/
