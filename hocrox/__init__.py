@@ -2,3 +2,4 @@
 
 from . import model
 from . import layer
+from . import utils
