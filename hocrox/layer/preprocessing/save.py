@@ -3,8 +3,10 @@ import os
 import cv2
 import numpy as np
 
+from hocrox.utils import Layer
 
-class Save:
+
+class Save(Layer):
     """Save layer for Hocrox."""
 
     def __init__(self, path, format="npy", name=None):
@@ -24,22 +26,24 @@ class Save:
 
         self.__path = path
         self.__format = format
-        self.__name = name if name else "Save Layer"
 
-        self.type = "save"
-        self.supported_parent_layer = [
-            "resize",
-            "greyscale",
-            "rotate",
-            "crop",
-            "padding",
+        super().__init__(
+            name,
             "save",
-            "horizontal_flip",
-            "vertical_flip",
-            "random_rotate",
-            "random_flip",
-        ]
-        self.bypass_validation = False
+            [
+                "resize",
+                "greyscale",
+                "rotate",
+                "crop",
+                "padding",
+                "save",
+                "horizontal_flip",
+                "vertical_flip",
+                "random_rotate",
+                "random_flip",
+            ],
+            f"Path: {self.__path}, Format: {self.__format}",
+        )
 
     def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -50,7 +54,8 @@ class Save:
         :rtype: ndarray
         """
         for index, image in enumerate(images):
-            filename = f"{self.__name}_{index}_{name}"
+            layer_name = self.get_name()
+            filename = f"{layer_name}_{index}_{name}"
 
             if self.__format == "npy":
                 np.save(os.path.join(self.__path, filename + ".npy"), image)
@@ -58,11 +63,3 @@ class Save:
                 cv2.imwrite(os.path.join(self.__path, filename), image)
 
         return images
-
-    def get_description(self):
-        """Return layers details for the model to generate summary.
-
-        :return: layer details
-        :rtype: str
-        """
-        return (f"{self.__name}({self.type})", f"Path: {self.__path}, Format: {self.__format}")
