@@ -15,7 +15,7 @@ class Grayscale(Layer):
         """
         super().__init__(
             name,
-            "random_flip",
+            "greyscale",
             [
                 "resize",
                 "greyscale",
