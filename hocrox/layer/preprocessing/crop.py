@@ -1,7 +1,8 @@
 """Crop layer for Hocrox."""
+from hocrox.utils import Layer
 
 
-class Crop:
+class Crop(Layer):
     """Crop layer for Hocrox."""
 
     def __init__(self, x, y, w, h, name=None):
@@ -30,29 +31,28 @@ class Crop:
         if h and not isinstance(h, int):
             raise ValueError(f"The value {h} for the argument h is not valid")
 
-        if name and not isinstance(name, str):
-            raise ValueError(f"The value {name} for the argument name is not valid")
-
         self.__x = x
         self.__y = y
         self.__w = w
         self.__h = h
-        self.__name = name if name else "Crop Layer"
 
-        self.type = "crop"
-        self.supported_parent_layer = [
-            "resize",
-            "greyscale",
-            "rotate",
+        super().__init__(
+            name,
             "crop",
-            "padding",
-            "save",
-            "horizontal_flip",
-            "vertical_flip",
-            "random_rotate",
-            "random_flip",
-        ]
-        self.bypass_validation = False
+            [
+                "resize",
+                "greyscale",
+                "rotate",
+                "crop",
+                "padding",
+                "save",
+                "horizontal_flip",
+                "vertical_flip",
+                "random_rotate",
+                "random_flip",
+            ],
+            f"Number of Outputs: X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
+        )
 
     def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -68,11 +68,3 @@ class Crop:
             transformed_images.append(image[self.__x : self.__x + self.__w, self.__y : self.__y + self.__h])
 
         return transformed_images
-
-    def get_description(self):
-        """Return layers details for the model to generate summary.
-
-        :return: layer details
-        :rtype: str
-        """
-        return (f"{self.__name}({self.type})", f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}")
