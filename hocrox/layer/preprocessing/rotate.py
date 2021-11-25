@@ -2,8 +2,10 @@
 import cv2
 import numpy as np
 
+from hocrox.utils import Layer
 
-class Rotate:
+
+class Rotate(Layer):
     """Rotate layer for Hocrox."""
 
     @staticmethod
@@ -33,26 +35,25 @@ class Rotate:
         if not (isinstance(angle, int) or isinstance(angle, float)):
             raise ValueError(f"The value {angle} for the argument angle is not valid")
 
-        if name and not isinstance(name, str):
-            raise ValueError(f"The value {name} for the argument name is not valid")
-
         self.__angle = angle
-        self.__name = name if name else "Rotate Layer"
 
-        self.type = "rotate"
-        self.supported_parent_layer = [
-            "resize",
-            "greyscale",
+        super().__init__(
+            name,
             "rotate",
-            "crop",
-            "padding",
-            "save",
-            "horizontal_flip",
-            "vertical_flip",
-            "random_rotate",
-            "random_flip",
-        ]
-        self.bypass_validation = False
+            [
+                "resize",
+                "greyscale",
+                "rotate",
+                "crop",
+                "padding",
+                "save",
+                "horizontal_flip",
+                "vertical_flip",
+                "random_rotate",
+                "random_flip",
+            ],
+            f"Angle: {self.__angle}",
+        )
 
     def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -68,11 +69,3 @@ class Rotate:
             transformed_images.append(self.__rotate_image(image, self.__angle))
 
         return transformed_images
-
-    def get_description(self):
-        """Return layers details for the model to generate summary.
-
-        :return: layer details
-        :rtype: str
-        """
-        return (f"{self.__name}({self.type})", f"Angle: {self.__angle}")
