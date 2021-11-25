@@ -3,8 +3,10 @@ import cv2
 import random
 import numpy as np
 
+from hocrox.utils import Layer
 
-class RandomRotate:
+
+class RandomRotate(Layer):
     """RandomRotate layer for Hocrox."""
 
     @staticmethod
@@ -48,28 +50,27 @@ class RandomRotate:
         if isinstance(number_of_outputs, int) and number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
-        if name and not isinstance(name, str):
-            raise ValueError(f"The value {name} for the argument name is not valid")
-
         self.__start_angle = start_angle
         self.__end_angle = end_angle
         self.__number_of_outputs = number_of_outputs
-        self.__name = name if name else "Random Rotate Layer"
 
-        self.type = "random_rotate"
-        self.supported_parent_layer = [
-            "resize",
-            "greyscale",
-            "rotate",
-            "crop",
-            "padding",
-            "save",
-            "horizontal_flip",
-            "vertical_flip",
+        super().__init__(
+            name,
             "random_rotate",
-            "random_flip",
-        ]
-        self.bypass_validation = False
+            [
+                "resize",
+                "greyscale",
+                "rotate",
+                "crop",
+                "padding",
+                "save",
+                "horizontal_flip",
+                "vertical_flip",
+                "random_rotate",
+                "random_flip",
+            ],
+            f"Number of Outputs: {number_of_outputs}",
+        )
 
     def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -87,15 +88,3 @@ class RandomRotate:
                 transformed_images.append(self.__rotate_image(image, angle))
 
         return transformed_images
-
-    def get_description(self):
-        """Return layers details for the model to generate summary.
-
-        :return: layer details
-        :rtype: str
-        """
-        return (
-            f"{self.__name}({self.type})",
-            f"Start Angle: {self.__start_angle}, End Angle: {self.__end_angle}, Number of Outputs:"
-            + f"{self.__number_of_outputs} ",
-        )

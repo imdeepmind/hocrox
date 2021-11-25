@@ -24,7 +24,7 @@ class Layer:
             ValueError: If the parameter_str is not valid
             ValueError: If the bypass_validation is not valid
         """
-        if not isinstance(name, str):
+        if name and not isinstance(name, str):
             raise ValueError(f"The value {name} for the argument name is not valid")
 
         if not isinstance(type, str):
@@ -39,7 +39,7 @@ class Layer:
         if not isinstance(bypass_validation, bool):
             raise ValueError(f"The value {bypass_validation} for the argument bypass_validation is not valid")
 
-        self.__name = name
+        self.__name = name or f"{type.capitalize().replace('_', ' ')} Layer"
         self.__type = type
         self.__supported_parent_layer = supported_parent_layer
         self.__parameter_str = parameter_str
@@ -51,7 +51,7 @@ class Layer:
         Returns:
             tuple -- Description of the layer
         """
-        return (f"{self.__name}({self.type})", self.__parameter_str)
+        return (f"{self.__name}({self.__type})", self.__parameter_str)
 
     def is_valid_child(self, previous_layer_type):
         """Check if based on the previous layer type, the current is valid or not.
