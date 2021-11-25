@@ -1,8 +1,10 @@
 """Grayscale layer for Hocrox."""
 import cv2
 
+from hocrox.utils import Layer
 
-class Grayscale:
+
+class Grayscale(Layer):
     """Grayscale layer for Hocrox."""
 
     def __init__(self, name=None):
@@ -11,25 +13,23 @@ class Grayscale:
         :param name: name of the layer
         :type name: str
         """
-        if name and not isinstance(name, str):
-            raise ValueError(f"The value {name} for the argument name is not valid")
-
-        self.__name = name if name else "Grayscale Layer"
-
-        self.type = "greyscale"
-        self.supported_parent_layer = [
-            "resize",
-            "greyscale",
-            "rotate",
-            "crop",
-            "padding",
-            "save",
-            "horizontal_flip",
-            "vertical_flip",
-            "random_rotate",
+        super().__init__(
+            name,
             "random_flip",
-        ]
-        self.bypass_validation = False
+            [
+                "resize",
+                "greyscale",
+                "rotate",
+                "crop",
+                "padding",
+                "save",
+                "horizontal_flip",
+                "vertical_flip",
+                "random_rotate",
+                "random_flip",
+            ],
+            "-",
+        )
 
     def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -45,11 +45,3 @@ class Grayscale:
             transformed_images.append(cv2.cvtColor(image, cv2.COLOR_BGR2GRAY))
 
         return transformed_images
-
-    def get_description(self):
-        """Return layers details for the model to generate summary.
-
-        :return: layer details
-        :rtype: str
-        """
-        return (f"{self.__name}({self.type})", "-")
