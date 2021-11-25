@@ -1,8 +1,10 @@
 """Resize layer for Hocrox."""
 import cv2
 
+from hocrox.utils import Layer
 
-class Resize:
+
+class Resize(Layer):
     """Resize layer for Hocrox."""
 
     def __init__(self, dim, interpolation="INTER_LINEAR", name=None):
@@ -24,11 +26,7 @@ class Resize:
         if interpolation not in ("INTER_LINEAR", "INTER_AREA", "INTER_CUBIC"):
             raise ValueError(f"The value {interpolation} for the argument interpolation is not valid")
 
-        if name and not isinstance(name, str):
-            raise ValueError(f"The value {name} for the argument name is not valid")
-
         self.__dim = dim
-        self.__name = name if name else "Resize Layer"
 
         if interpolation == "INTER_LINEAR":
             self.__interpolation = cv2.INTER_LINEAR
@@ -37,20 +35,23 @@ class Resize:
         else:
             self.__interpolation = cv2.INTER_CUBIC
 
-        self.type = "resize"
-        self.supported_parent_layer = [
+        super().__init__(
+            name,
             "resize",
-            "greyscale",
-            "rotate",
-            "crop",
-            "padding",
-            "save",
-            "horizontal_flip",
-            "vertical_flip",
-            "random_rotate",
-            "random_flip",
-        ]
-        self.bypass_validation = False
+            [
+                "resize",
+                "greyscale",
+                "rotate",
+                "crop",
+                "padding",
+                "save",
+                "horizontal_flip",
+                "vertical_flip",
+                "random_rotate",
+                "random_flip",
+            ],
+            f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
+        )
 
     def apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -66,11 +67,3 @@ class Resize:
             transformed_images.append(cv2.resize(image, self.__dim, self.__interpolation))
 
         return transformed_images
-
-    def get_description(self):
-        """Return layers details for the model to generate summary.
-
-        :return: layer details
-        :rtype: str
-        """
-        return (f"{self.__name}({self.type})", f"Dim: {self.__dim}, Interpolation: {self.__interpolation}")
