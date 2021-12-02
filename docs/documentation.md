@@ -1,3 +1,3 @@
-# Documentation
+# Hocrox
 
 ::: hocrox

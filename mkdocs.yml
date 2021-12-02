@@ -10,6 +10,8 @@ plugins:
 theme:
   name: material
 nav:
-  - Home: "index.md"
+  - Home: "documentation.md"
   - "install.md"
-  - "documentation.md"
+  - "get-started.md"
+  - "blog.md"
+  - "contributors.md"
