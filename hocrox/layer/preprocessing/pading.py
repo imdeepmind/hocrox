@@ -60,7 +60,7 @@ class Padding(Layer):
             f"Top: {self.__top}, Bottom: {self.__bottom}, Left: {self.__left}, Right: {self.__right}",
         )
 
-    def apply_layer(self, images, name=None):
+    def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer

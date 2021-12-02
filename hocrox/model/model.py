@@ -50,7 +50,7 @@ class Model:
         if self.__frozen:
             raise ValueError("Model is frozen")
 
-        if not (hasattr(layer, "apply_layer") and hasattr(layer, "get_description")):
+        if not (hasattr(layer, "_apply_layer") and hasattr(layer, "get_description")):
             raise ValueError("The layer is not a valid layer")
 
         if len(self.__layers) > 0:
@@ -86,7 +86,7 @@ class Model:
 
         for path, image in tqdm(gen, total=len(images)):
             for layer in self.__layers:
-                image = layer.apply_layer(image, path)
+                image = layer._apply_layer(image, path)
 
     def freeze(self):
         """Freeze the model so it cannot be edited."""

@@ -55,7 +55,7 @@ class Rotate(Layer):
             f"Angle: {self.__angle}",
         )
 
-    def apply_layer(self, images, name=None):
+    def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer

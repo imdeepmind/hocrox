@@ -54,7 +54,7 @@ class Crop(Layer):
             f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
         )
 
-    def apply_layer(self, images, name=None):
+    def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
         :param img: image for the layer
