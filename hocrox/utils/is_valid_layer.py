@@ -24,7 +24,7 @@ def is_valid_layer(layer):
     if not hasattr(layer, "is_valid_child"):
         return False
 
-    if not hasattr(layer, "apply_layer"):
+    if not hasattr(layer, "_apply_layer"):
         return False
 
     return True
