@@ -62,10 +62,12 @@ class RandomFlip(Layer):
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
-        :param img: image for the layer
-        :type img: ndarray
-        :return: transformed image
-        :rtype: ndarray
+        Args:
+            images (list[ndarray]): List of images to transform.
+            name (str, optional): Name of the image series, used for saving the images. Defaults to None.
+
+        Returns:
+            list[ndarray]: Return the transform images
         """
         transformed_images = []
 
