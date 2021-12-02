@@ -2,13 +2,15 @@
 
 
 def is_valid_layer(layer):
-    """is_valid_layer method is used to check if a layer is valid or not.
+    """Check if the layer is valid or not.
 
-    Arguments:
-        layer {layer} -- The layer class
+    This function needed to be used when building custom layers to confirm the layer is valid.
+
+    Args:
+        layer (class): Custom layer class.
 
     Returns:
-        bool -- True is the layer is valid, else False
+        bool: True if the layer is valid, else False.
     """
     if not hasattr(layer, "get_description"):
         return False
