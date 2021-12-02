@@ -7,6 +7,8 @@ import os
 from prettytable import PrettyTable
 from tqdm import tqdm
 
+from hocrox.utils import is_valid_layer
+
 
 class Model:
     """Model model for Hocrox."""
@@ -50,7 +52,7 @@ class Model:
         if self.__frozen:
             raise ValueError("Model is frozen")
 
-        if not (hasattr(layer, "apply_layer") and hasattr(layer, "get_description")):
+        if not is_valid_layer(layer):
             raise ValueError("The layer is not a valid layer")
 
         if len(self.__layers) > 0:
