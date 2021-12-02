@@ -12,16 +12,16 @@ def is_valid_layer(layer):
     Returns:
         bool: True if the layer is valid, else False.
     """
-    if not hasattr(layer, "get_description"):
+    if not hasattr(layer, "_get_description"):
         return False
 
-    if not hasattr(layer, "get_name"):
+    if not hasattr(layer, "_get_name"):
         return False
 
-    if not hasattr(layer, "get_type"):
+    if not hasattr(layer, "_get_type"):
         return False
 
-    if not hasattr(layer, "is_valid_child"):
+    if not hasattr(layer, "_is_valid_child"):
         return False
 
     if not hasattr(layer, "_apply_layer"):

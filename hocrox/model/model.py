@@ -56,10 +56,10 @@ class Model:
             raise ValueError("The layer is not a valid layer")
 
         if len(self.__layers) > 0:
-            previous_layer_type = self.__layers[-1].get_type()
+            previous_layer_type = self.__layers[-1]._get_type()
 
-            if not layer.is_valid_child(previous_layer_type):
-                tp = layer.get_type()
+            if not layer._is_valid_child(previous_layer_type):
+                tp = layer._get_type()
                 raise ValueError(
                     f"The layer of type '{tp}' does not support layer of type '{previous_layer_type}' as parent layer"
                 )
@@ -75,7 +75,7 @@ class Model:
         t = PrettyTable(["Index", "Name", "Parameters"])
 
         for index, layer in enumerate(self.__layers):
-            (name, parameters) = layer.get_description()
+            (name, parameters) = layer._get_description()
 
             t.add_row([f"#{index+1}", name, parameters])
 

@@ -77,7 +77,7 @@ class Save(Layer):
             list[ndarray]: Return the transform images
         """
         for index, image in enumerate(images):
-            layer_name = self.get_name()
+            layer_name = self._get_name()
             filename = f"{layer_name}_{index}_{name}"
 
             if self.__format == "npy":

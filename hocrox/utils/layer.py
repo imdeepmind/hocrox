@@ -45,7 +45,7 @@ class Layer:
         self.__parameter_str = parameter_str
         self.__bypass_validation = bypass_validation
 
-    def get_description(self):
+    def _get_description(self):
         """Return the description tuple of the layer, used in printing the model summary.
 
         Returns:
@@ -53,7 +53,7 @@ class Layer:
         """
         return (f"{self.__name}({self.__type})", self.__parameter_str)
 
-    def is_valid_child(self, previous_layer_type):
+    def _is_valid_child(self, previous_layer_type):
         """Check if based on the previous layer type, the current is valid or not.
 
         Arguments:
@@ -67,7 +67,7 @@ class Layer:
 
         return previous_layer_type in self.__supported_parent_layer
 
-    def get_name(self):
+    def _get_name(self):
         """Return the name of the layer.
 
         Returns:
@@ -75,7 +75,7 @@ class Layer:
         """
         return self.__name
 
-    def get_type(self):
+    def _get_type(self):
         """Return the type of the layer.
 
         Returns:
