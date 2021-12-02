@@ -21,10 +21,7 @@ def is_valid_layer(layer):
     if not hasattr(layer, "get_type"):
         return False
 
-    if not hasattr(layer, "get_supported_parent_layer"):
-        return False
-
-    if not hasattr(layer, "get_bypass_validation"):
+    if not hasattr(layer, "is_valid_child"):
         return False
 
     if not hasattr(layer, "apply_layer"):
