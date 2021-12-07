@@ -2,5 +2,5 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 4,
   "python.formatting.provider": "black",
-  "autoDocstring.docstringFormat": "docblockr"
+  "autoDocstring.docstringFormat": "google"
 }

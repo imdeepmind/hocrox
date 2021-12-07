@@ -1,0 +1,17 @@
+site_name: Hocrox
+site_description: Hocrox is an image preprocessing and augmentation library. It provides a Keras like simple interface to make preprocessing and augmentation pipelines. Hocrox internally uses OpenCV to perform the operations on images. OpenCV is one of the most popular for Computer Vision library.
+site_author: Abhishek Chatterjee
+copyright: Copyright 2021 Abhishek Chatterjee
+repo_url: https://github.com/imdeepmind/hocrox
+edit_uri: https://github.com/imdeepmind/hocrox/tree/main/docs/
+plugins:
+  - search
+  - mkdocstrings
+theme:
+  name: material
+nav:
+  - Home: "index.md"
+  - "install.md"
+  - "get-started.md"
+  - "blogs.md"
+  - "contributors.md"

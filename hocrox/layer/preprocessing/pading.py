@@ -5,24 +5,43 @@ from hocrox.utils import Layer
 
 
 class Padding(Layer):
-    """Padding layer for Hocrox."""
+    """Padding layer add a padding to an image.
+
+    Here is an example code to use the Padding layer in a model.
+
+    ```python
+    from hocrox.model import Model
+    from hocrox.layer.preprocessing import Padding
+
+    # Initializing the model
+    model = Model("./img")
+
+    # Adding model layers
+    model.add(Padding(top=20, bottom=20, left=20, right=20, color=[255, 255, 255]))
+
+    # Printing the summary of the model
+    print(model.summary())
+    ```
+    """
 
     def __init__(self, top, bottom, left, right, color=[255, 255, 255], name=None):
-        """Init method for the Padding layer.
+        """Init method for Padding layer.
 
-        :param x: x coordinate
-        :type x: int
-        :param y: y coordinate
-        :type y: int
-        :param w: w coordinate
-        :type w: int
-        :param h: h coordinate
-        :type h: int
-        :param h: h coordinate
-        :type h: int
+        Args:
+            top (int): Top padding size.
+            bottom (int): Bottom padding size.
+            left (int): Left padding size.
+            right (int): Right padding size.
+            color (list, optional): Color of the padding. Defaults to [255, 255, 255].
+            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+                the layer. Defaults to None.
 
-        :param name: name of the layer
-        :type name: str
+        Raises:
+            ValueError: If the top parameter is not valid.
+            ValueError: If the bottom parameter is not valid.
+            ValueError: If the left parameter is not valid.
+            ValueError: If the right parameter is not valid.
+            ValueError: If the color parameter is not valid.
         """
         if top and not isinstance(top, int):
             raise ValueError(f"The value {top} for the argument top is not valid")
@@ -34,7 +53,10 @@ class Padding(Layer):
             raise ValueError(f"The value {left} for the argument left is not valid")
 
         if right and not isinstance(right, int):
-            raise ValueError(f"The value {right} for the argument h is not valid")
+            raise ValueError(f"The value {right} for the argument right is not valid")
+
+        if not isinstance(color, list) or len(color) != 3:
+            raise ValueError(f"The value {color} for the argument color is not valid")
 
         self.__top = top
         self.__bottom = bottom
@@ -60,13 +82,15 @@ class Padding(Layer):
             f"Top: {self.__top}, Bottom: {self.__bottom}, Left: {self.__left}, Right: {self.__right}",
         )
 
-    def apply_layer(self, images, name=None):
+    def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
-        :param img: image for the layer
-        :type img: ndarray
-        :return: transformed image
-        :rtype: ndarray
+        Args:
+            images (list[ndarray]): List of images to transform.
+            name (str, optional): Name of the image series, used for saving the images. Defaults to None.
+
+        Returns:
+            list[ndarray]: Return the transform images
         """
         transformed_images = []
 

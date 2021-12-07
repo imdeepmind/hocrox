@@ -5,22 +5,43 @@ from hocrox.utils import Layer
 
 
 class Resize(Layer):
-    """Resize layer for Hocrox."""
+    """Resize layer resize an image to specific dimension.
+
+    Here is an example code to use the Resize layer in a model.
+
+    ```python
+    from hocrox.model import Model
+    from hocrox.layer.preprocessing import Resize
+
+    # Initializing the model
+    model = Model("./img")
+
+    # Adding model layers
+    model.add(Resize(dim=(200,200), interpolation="INTER_LINEAR"))
+
+    # Printing the summary of the model
+    print(model.summary())
+    ```
+    """
 
     def __init__(self, dim, interpolation="INTER_LINEAR", name=None):
-        """Init method for the Resize layer.
+        """Init method for Resize layer.
 
-        :param dim: dim to resize
-        :type dim: tuple
-        :param interpolation: interpolation for the resize
-        :type interpolation: str
-        :param name: name of the layer
-        :type name: str
+        Args:
+            dim (tuple): New dimension for the image
+            interpolation (str, optional): Interpolation method for the image. Defaults to "INTER_LINEAR".
+            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+                the layer. Defaults to None.
+
+        Raises:
+            ValueError: If the dim parameter is not valid
+            ValueError: If the dim parameter values are less than 0
+            ValueError: If the interpolation parameter is not valid
         """
         if not isinstance(dim, tuple):
             raise ValueError(f"The value {dim} for the argument dim is not valid")
 
-        if dim[0] <= 0 and dim[1] <= 0:
+        if dim[0] <= 0 or dim[1] <= 0:
             raise ValueError(f"The value {dim} for the argument dim is not valid")
 
         if interpolation not in ("INTER_LINEAR", "INTER_AREA", "INTER_CUBIC"):
@@ -53,13 +74,15 @@ class Resize(Layer):
             f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
         )
 
-    def apply_layer(self, images, name=None):
+    def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
 
-        :param img: image for the layer
-        :type img: ndarray
-        :return: transformed image
-        :rtype: ndarray
+        Args:
+            images (list[ndarray]): List of images to transform.
+            name (str, optional): Name of the image series, used for saving the images. Defaults to None.
+
+        Returns:
+            list[ndarray]: Return the transform images
         """
         transformed_images = []
 
