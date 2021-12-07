@@ -39,7 +39,7 @@ class Model:
 
         Args:
             read_dir (str): Path for read the image folder. Please note that the path need to contain only valid images
-            and no folders or other files.
+                and no folders or other files.
 
         Raises:
             ValueError: If the path is not valid.

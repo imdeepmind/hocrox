@@ -29,7 +29,7 @@ class VerticalFlip(Layer):
 
         Args:
             name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
-            the layer. Defaults to None.
+                the layer. Defaults to None.
 
         """
         super().__init__(
