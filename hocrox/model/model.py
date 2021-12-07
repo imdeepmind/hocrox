@@ -1,4 +1,4 @@
-"""Model model for Hocrox."""
+"""Model class for Hocrox."""
 
 import pickle
 import cv2
@@ -11,14 +11,38 @@ from hocrox.utils import is_valid_layer
 
 
 class Model:
-    """Model model for Hocrox."""
+    """Model class is used for making Hocrox models.
+
+    Models are the heart of Hocrox. In Hocrox, the model contains the entire pipeline for preprocessing and/or
+    augmenting the image.
+
+    Here is an example code to use the Model class for making a Hocrox model.
+
+    ```python
+    from hocrox.model import Model
+    from hocrox.layer.augmentation import RandomFlip, RandomRotate
+
+    # Initializing the model
+    model = Model("./img")
+
+    # Adding model layers
+    model.add(RandomFlip(number_of_outputs=2))
+    model.add(RandomRotate(start_angle=-10.0, end_angle=10.0, number_of_outputs=5))
+
+    # Printing the summary of the model
+    print(model.summary())
+    ```
+    """
 
     def __init__(self, read_dir):
-        """Init method for the Model model.
+        """Init method for the Model class.
 
-        :param read_dir: path where the images are stored
-        :type read_dir: str
-        :raises ValueError: when the read_dir is not valid
+        Args:
+            read_dir (str): Path for read the image folder. Please note that the path need to contain only valid images
+            and no folders or other files.
+
+        Raises:
+            ValueError: If the path is not valid.
         """
         if not isinstance(read_dir, str):
             raise ValueError("Please provide a valid read_dir path")
@@ -28,12 +52,13 @@ class Model:
         self.__read_dir = read_dir
 
     def __read_image_gen(self, images):
-        """Create a generator function for the image.
+        """Read images from the filesystem and returns a generator.
 
-        :param images: list of all images
-        :type images: list of str
-        :yield: one image array
-        :rtype: ndarray
+        Args:
+            images (list): List of images to read
+
+        Yields:
+            ndarray: Image in the form of numpy ndarray.
         """
         for path in images:
             image = cv2.imread(os.path.join(self.__read_dir, path), 1)
@@ -41,13 +66,15 @@ class Model:
             yield path, [image]
 
     def add(self, layer):
-        """Add new layers to the model.
+        """Add a new layer to the model.
 
-        :param layer: layer to add in the model
-        :type layer: class
-        :raises ValueError: if the model is frozen
-        :raises ValueError: if the layer is not valid
-        :raises ValueError: if the layer is not valid
+        Args:
+            layer (layer): Layer class to add into the model.
+
+        Raises:
+            ValueError: If the model is frozen.
+            ValueError: If the layer is not valid.
+            ValueError: If the layer does support the parent layer.
         """
         if self.__frozen:
             raise ValueError("Model is frozen")
@@ -67,10 +94,25 @@ class Model:
         self.__layers.append(layer)
 
     def summary(self):
-        """Generate the summary for the model.
+        """Generate summary of the model.
 
-        :return: summary of the model
-        :rtype: str
+        Here is an example code to use .summary() function in a model.
+
+        ```python
+        from hocrox.model import Model
+
+        # Initializing the model
+        model = Model("./img")
+
+        ...
+        ...
+
+        # Printing the summary of the model
+        print(model.summary())
+        ```
+
+        Returns:
+            sre: Summary of the model.
         """
         t = PrettyTable(["Index", "Name", "Parameters"])
 
@@ -82,7 +124,23 @@ class Model:
         return str(t)
 
     def transform(self):
-        """Transform the images using the layers."""
+        """Perform the transformation of the images using the defined the model pipeline.
+
+        Here is an example code to use .transform() function in a model.
+
+        ```python
+        from hocrox.model import Model
+
+        # Initializing the model
+        model = Model("./img")
+
+        ...
+        ...
+
+        # Apply transformation to the images based on the defined model pipeline.
+        model.transform()
+        ```
+        """
         images = os.listdir(self.__read_dir)
         gen = self.__read_image_gen(images)
 
@@ -91,15 +149,50 @@ class Model:
                 image = layer._apply_layer(image, path)
 
     def freeze(self):
-        """Freeze the model so it cannot be edited."""
+        """Freeze the model. Frozen models cannot be modified.
+
+        Here is an example code to use .freeze() function in a model.
+
+        ```python
+        from hocrox.model import Model
+
+        # Initializing the model
+        model = Model("./img")
+
+        ...
+        ...
+
+        # Freeze the model so it can not be modified
+        model.freeze()
+        ```
+        """
         self.__frozen = True
 
     def save(self, path):
-        """Save the model to filesystem.
+        """Save the defined pipeline for filesystem.
 
-        :param path: path where the model will be stored
-        :type path: str
-        :raises ValueError: if the model is not valid
+        It internally uses pickle to save the model.
+
+        Here is an example code to use .save() function in a model.
+
+        ```python
+        from hocrox.model import Model
+
+        # Initializing the model
+        model = Model("./img")
+
+        ...
+        ...
+
+        # Save the model to specific path
+        model.save(path="./model.hocrox")
+        ```
+
+        Args:
+            path (str): Path to store the model.
+
+        Raises:
+            ValueError: If the path is not valid.
         """
         if not isinstance(path, str):
             raise ValueError("Path is not valid")
@@ -110,11 +203,28 @@ class Model:
             pickle.dump(model_config, f)
 
     def load(self, path):
-        """Load model from fiesystem.
+        """Load a model from the filesystem.
 
-        :param path: path where the model is stored
-        :type path: str
-        :raises ValueError: if the path is not valid
+        Here is an example code to use .load() function in a model.
+
+        ```python
+        from hocrox.model import Model
+
+        # Initializing the model
+        model = Model("./img")
+
+        ...
+        ...
+
+        # Load the model to specific path
+        model.load(path="./model.hocrox")
+        ```
+
+        Args:
+            path (str): Path to read the model from.
+
+        Raises:
+            ValueError: If the path is not valid.
         """
         if not isinstance(path, str):
             raise ValueError("Path is not valid")
