@@ -1,3 +1,10 @@
+---
+title: Get Started
+summary: Get Started with Hocrox library. Find all the important instructions to start using Hocrox.
+authors:
+  - Abhishek Chatterjee
+---
+
 # Get Started
 
 Here, in this example, we’ll create a simple preprocessing and augmentation model.

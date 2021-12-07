@@ -1,3 +1,10 @@
+---
+title: Install
+summary: Installation instruction for the Hocrox library.
+authors:
+  - Abhishek Chatterjee
+---
+
 # Install
 
 To install Hocrox, run the following command.
