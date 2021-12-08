@@ -15,3 +15,6 @@ nav:
   - "get-started.md"
   - "blogs.md"
   - "contributors.md"
+site_url: http://hocrox.imdeepmind.com/
+docs_dir: md_docs
+site_dir: docs
