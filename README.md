@@ -4,7 +4,7 @@ An image preprocessing and augmentation library with Keras like interface.
 
 ## Introduction
 
-Hocrox is an image preprocessing and augmentation library. It provides a [Keras](https://keras.io/) like simple interface to make preprocessing and augmentation pipelines. Hocrox internally uses [OpenCV](https://opencv.org/) to perform the operations on images. OpenCV is one of the most popular for Computer Vision library.
+Hocrox is an image preprocessing and augmentation library. It provides a [Keras](https://keras.io/) like simple interface to make preprocessing and augmentation pipelines. Hocrox internally uses [OpenCV](https://opencv.org/) to perform the operations on images. OpenCV is one of the most popular Computer Vision library.
 
 Here are some of the highlights of Hocrox:
 
@@ -25,7 +25,7 @@ model.add(layers.Dense(3, activation="relu"))
 model.add(layers.Dense(4))
 ```
 
-In Hocrox, the interface for making pipelines very much similar. So anyone can make complex pipelines with few lines of code.
+In Hocrox, the interface for making pipelines is very much similar. So anyone can make complex pipelines with few lines of code.
 
 ## Install
 
