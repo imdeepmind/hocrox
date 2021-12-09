@@ -28,7 +28,7 @@ class Grayscale(Layer):
         """Init method for grayscale layer.
 
         Args:
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         """

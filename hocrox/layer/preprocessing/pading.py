@@ -33,7 +33,7 @@ class Padding(Layer):
             left (int): Left padding size.
             right (int): Right padding size.
             color (list, optional): Color of the padding. Defaults to [255, 255, 255].
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:

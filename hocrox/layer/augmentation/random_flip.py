@@ -30,7 +30,7 @@ class RandomFlip(Layer):
 
         Args:
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:

@@ -50,7 +50,7 @@ class RandomRotate(Layer):
             start_angle (float): Start of the range of angle
             end_angle (float): End of the range of angle
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:

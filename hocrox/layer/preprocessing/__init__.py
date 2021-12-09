@@ -1,4 +1,4 @@
-"""Layer module for Hocrox library."""
+"""Image preprocessing is the process of formatting and tweaking images before they are used by some models."""
 
 from .resize import Resize
 from .grayscale import Grayscale

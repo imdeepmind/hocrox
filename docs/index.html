@@ -1430,7 +1430,7 @@
 
       <p>Hocrox is an image preprocessing and augmentation library.</p>
 <p>It provides a <a href="https://keras.io/">Keras</a> like simple interface to make preprocessing and augmentation pipelines.
-Hocrox internally uses <a href="https://opencv.org/">OpenCV</a> to perform the operations on images. OpenCV is one of the most popular for Computer Vision library.</p>
+Hocrox internally uses <a href="https://opencv.org/">OpenCV</a> to perform the operations on images. OpenCV is one of the most popular Computer Vision library.</p>
 <p>Here are some of the highlights of Hocrox:</p>
 <ul>
 <li>Provides an easy interface that is suitable for radio pipeline development</li>
@@ -1469,7 +1469,7 @@ Hocrox internally uses <a href="https://opencv.org/">OpenCV</a> to perform the o
 
       <p>Layers are the fundamental blocks of Hocrox image preprocessing and augmentation library.</p>
 <p>In Hocrox, each layer basically means a function that will be performed on the images to preprocess or/and augment.</p>
-<p>Currently, in Hocrox, there are several layers. The complete the list is below.</p>
+<p>Currently, in Hocrox, there are several layers. The complete list is below.</p>
 <ul>
 <li>Preprocessing<ul>
 <li>Crop</li>
@@ -1518,12 +1518,12 @@ Hocrox internally uses <a href="https://opencv.org/">OpenCV</a> to perform the o
 
     <div class="doc doc-contents ">
 
-      <p>Image Augmentation is process of increasing the image data by slightly tweaking and changing the original images.</p>
+      <p>Image Augmentation is the process of increasing the image data by slightly tweaking and changing the original images.</p>
 <p>In other words, Augmentation means artificially creating more data to train ML or DL models.</p>
-<p>In image Augmentation, we slightly rotate the image, flip the image, change the color of the image
-to generate multiple versions of the image. Since all these images are from the original image with
-slight modifications, they still represent the original patterns in the image.</p>
-<p>In Hocrox, currently there are only 2 augmentation layers, RandomFlip and RandomRotate.</p>
+<p>In image Augmentation, we slightly rotate, flip, change the color of the images to generate multiple versions of the
+image. Since all these images are from the original image with slight modifications, they still represent
+the original patterns from the original images (most of the time).</p>
+<p>In Hocrox, currently, there are only 2 augmentation layers, RandomFlip and RandomRotate.</p>
 
 
 
@@ -1643,7 +1643,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1671,7 +1671,7 @@ the layer. Defaults to None.</p></td>
 
 <span class="sd">    Args:</span>
 <span class="sd">        number_of_outputs (int, optional): Number of images to output. Defaults to 1.</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    Raises:</span>
@@ -1846,7 +1846,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1888,7 +1888,7 @@ the layer. Defaults to None.</p></td>
 <span class="sd">        start_angle (float): Start of the range of angle</span>
 <span class="sd">        end_angle (float): End of the range of angle</span>
 <span class="sd">        number_of_outputs (int, optional): Number of images to output. Defaults to 1.</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    Raises:</span>
@@ -1985,7 +1985,7 @@ the layer. Defaults to None.</p></td>
 
     <div class="doc doc-contents ">
 
-      <p>Layer module for Hocrox library.</p>
+      <p>Image preprocessing is the process of formatting and tweaking images before they are used by some models.</p>
 
 
 
@@ -2123,7 +2123,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -2166,7 +2166,7 @@ the layer. Defaults to None.</p></td>
 <span class="sd">        y (int): Y coordinate for the crop.</span>
 <span class="sd">        w (int): Width of the cropped image.</span>
 <span class="sd">        h (int): Height of the cropped image.</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    Raises:</span>
@@ -2338,7 +2338,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -2350,7 +2350,7 @@ the layer. Defaults to None.</p></td>
     <span class="sd">&quot;&quot;&quot;Init method for grayscale layer.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2500,7 +2500,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -2512,7 +2512,7 @@ the layer. Defaults to None.</p></td>
     <span class="sd">&quot;&quot;&quot;Init method for horizontal flip layer.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2692,7 +2692,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -2740,7 +2740,7 @@ the layer. Defaults to None.</p></td>
 <span class="sd">        left (int): Left padding size.</span>
 <span class="sd">        right (int): Right padding size.</span>
 <span class="sd">        color (list, optional): Color of the padding. Defaults to [255, 255, 255].</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    Raises:</span>
@@ -2929,7 +2929,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -2966,7 +2966,7 @@ the layer. Defaults to None.</p></td>
 <span class="sd">    Args:</span>
 <span class="sd">        dim (tuple): New dimension for the image</span>
 <span class="sd">        interpolation (str, optional): Interpolation method for the image. Defaults to &quot;INTER_LINEAR&quot;.</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    Raises:</span>
@@ -3123,20 +3123,60 @@ print(model.summary())
     <div class="doc doc-contents ">
 
       <p>Init method for the Rotate layer.</p>
-<p>:param angle: angle to rotate
-:type angle: float
-:param name: name of the layer
-:type name: str</p>
 
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>angle</code></td>
+        <td><code>float</code></td>
+        <td><p>Angle to ratate the image.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
+the layer. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ValueError</code></td>
+        <td><p>If the angle is not valid.</p></td>
+      </tr>
+  </tbody>
+</table>
         <details class="quote">
           <summary>Source code in <code>hocrox/layer/preprocessing/rotate.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Init method for the Rotate layer.</span>
 
-<span class="sd">    :param angle: angle to rotate</span>
-<span class="sd">    :type angle: float</span>
-<span class="sd">    :param name: name of the layer</span>
-<span class="sd">    :type name: str</span>
+<span class="sd">    Args:</span>
+<span class="sd">        angle (float): Angle to ratate the image.</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
+<span class="sd">            the layer. Defaults to None.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the angle is not valid.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The value </span><span class="si">{</span><span class="n">angle</span><span class="si">}</span><span class="s2"> for the argument angle is not valid&quot;</span><span class="p">)</span>
@@ -3301,7 +3341,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -3334,7 +3374,7 @@ the layer. Defaults to None.</p></td>
 <span class="sd">    Args:</span>
 <span class="sd">        path (str): Path to store the image</span>
 <span class="sd">        format (str, optional): Format to save the image. Defaults to &quot;npy&quot;.</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    Raises:</span>
@@ -3496,7 +3536,7 @@ print(model.summary())
       <tr>
         <td><code>name</code></td>
         <td><code>str</code></td>
-        <td><p>Name of the layer, if not provided then automatically generates an unique name for
+        <td><p>Name of the layer, if not provided then automatically generates a unique name for
 the layer. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
@@ -3508,7 +3548,7 @@ the layer. Defaults to None.</p></td>
     <span class="sd">&quot;&quot;&quot;Init method for horizontal flip layer.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates an unique name for</span>
+<span class="sd">        name (str, optional): Name of the layer, if not provided then automatically generates a unique name for</span>
 <span class="sd">            the layer. Defaults to None.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>

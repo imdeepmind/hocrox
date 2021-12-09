@@ -2,7 +2,7 @@
 
 It provides a [Keras](https://keras.io/) like simple interface to make preprocessing and augmentation pipelines.
 Hocrox internally uses [OpenCV](https://opencv.org/) to perform the operations on images. OpenCV is one of the most \
-popular for Computer Vision library.
+popular Computer Vision library.
 
 Here are some of the highlights of Hocrox:
 

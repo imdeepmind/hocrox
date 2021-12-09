@@ -32,7 +32,7 @@ class Save(Layer):
         Args:
             path (str): Path to store the image
             format (str, optional): Format to save the image. Defaults to "npy".
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:

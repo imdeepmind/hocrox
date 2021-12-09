@@ -30,7 +30,7 @@ class Resize(Layer):
         Args:
             dim (tuple): New dimension for the image
             interpolation (str, optional): Interpolation method for the image. Defaults to "INTER_LINEAR".
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:
