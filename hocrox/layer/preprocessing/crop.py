@@ -30,7 +30,7 @@ class Crop(Layer):
             y (int): Y coordinate for the crop.
             w (int): Width of the cropped image.
             h (int): Height of the cropped image.
-            name (str, optional): Name of the layer, if not provided then automatically generates an unique name for
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:

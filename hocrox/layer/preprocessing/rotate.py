@@ -27,14 +27,14 @@ class Rotate(Layer):
 
     @staticmethod
     def __rotate_image(image, angle):
-        """Rotate the image to specific angle.
+        """Rotate an image to certain angle.
 
-        :param image: image array
-        :type image: ndarray
-        :param angle: angle to rotate
-        :type angle: float
-        :return: rotated image
-        :rtype: ndarray
+        Args:
+            image (ndarray): Image to rorate
+            angle (float): Angle to rotate
+
+        Returns:
+            ndarray: New rotated image.
         """
         image_center = tuple(np.array(image.shape[1::-1]) / 2)
         rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
@@ -44,10 +44,13 @@ class Rotate(Layer):
     def __init__(self, angle, name=None):
         """Init method for the Rotate layer.
 
-        :param angle: angle to rotate
-        :type angle: float
-        :param name: name of the layer
-        :type name: str
+        Args:
+            angle (float): Angle to ratate the image.
+            name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
+                the layer. Defaults to None.
+
+        Raises:
+            ValueError: If the angle is not valid.
         """
         if not (isinstance(angle, int) or isinstance(angle, float)):
             raise ValueError(f"The value {angle} for the argument angle is not valid")

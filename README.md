@@ -1,9 +1,10 @@
 # Hocrox
+
 An image preprocessing and augmentation library with Keras like interface.
 
-# Introduction
+## Introduction
 
-Hocrox is an image preprocessing and augmentation library. It provides a [Keras](https://keras.io/) like simple interface to make preprocessing and augmentation pipelines. Hocrox internally uses [OpenCV](https://opencv.org/) to perform the operations on images. OpenCV is one of the most popular for Computer Vision library.
+Hocrox is an image preprocessing and augmentation library. It provides a [Keras](https://keras.io/) like simple interface to make preprocessing and augmentation pipelines. Hocrox internally uses [OpenCV](https://opencv.org/) to perform the operations on images. OpenCV is one of the most popular Computer Vision library.
 
 Here are some of the highlights of Hocrox:
 
@@ -11,7 +12,7 @@ Here are some of the highlights of Hocrox:
 - It internally uses OpenCV
 - Highly configurable with support for custom layers
 
-# The Keas interface
+## The Keas interface
 
 Keras is one of the most popular Deep Learning library. Keras provides a very simple yet powerful interface that can be used to develop start-of-the-art Deep Learning models.
 
@@ -24,9 +25,9 @@ model.add(layers.Dense(3, activation="relu"))
 model.add(layers.Dense(4))
 ```
 
-In Hocrox, the interface for making pipelines very much similar. So anyone can make complex pipelines with few lines of code.
+In Hocrox, the interface for making pipelines is very much similar. So anyone can make complex pipelines with few lines of code.
 
-# Install
+## Install
 
 To install Hocrox, run the following command.
 
@@ -34,15 +35,15 @@ To install Hocrox, run the following command.
 pip install hocrox
 ```
 
-# Dependencies
+## Dependencies
 
 Hocrox uses OpenCV internally so install it before.
 
-# Documentation
+## Documentation
 
 Documentation for Hocrox is available [here](https://imdeepmind.com/hocrox/).
 
-# Example
+## Example
 
 Here is one simple pipeline for preprocessing images.
 
@@ -66,10 +67,10 @@ print(model.summary())
 model.transform()
 ```
 
-# Contributors
+## Contributors
 
 Check the list of contributors [here](https://github.com/imdeepmind/hocrox/graphs/contributors).
 
-# License
+## License
 
 [MIT](https://github.com/imdeepmind/hocrox/blob/main/LICENSE)

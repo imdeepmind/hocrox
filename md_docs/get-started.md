@@ -1,6 +1,6 @@
 ---
 title: Get Started
-summary: Get Started with Hocrox library. Find all the important instructions to start using Hocrox.
+description: Get Started with Hocrox library. Find all the important instructions to start using Hocrox.
 authors:
   - Abhishek Chatterjee
 ---
