@@ -3633,7 +3633,9 @@ the layer. Defaults to None.</p></td>
 
     <div class="doc doc-contents ">
 
-      <p>Model module for the Hocrox library.</p>
+      <p>Model module for Hocrox library.</p>
+<p>Models are the heart of Hocrox. In Hocrox, the model is used to make the entire pipeline for preprocessing and/or
+augmenting the image.</p>
 
 
 
@@ -3688,8 +3690,6 @@ Model        </code>
     <div class="doc doc-contents ">
 
       <p>Model class is used for making Hocrox models.</p>
-<p>Models are the heart of Hocrox. In Hocrox, the model contains the entire pipeline for preprocessing and/or
-augmenting the image.</p>
 <p>Here is an example code to use the Model class for making a Hocrox model.</p>
 <pre><code class="language-python">from hocrox.model import Model
 from hocrox.layer.augmentation import RandomFlip, RandomRotate
@@ -3749,8 +3749,8 @@ print(model.summary())
       <tr>
         <td><code>read_dir</code></td>
         <td><code>str</code></td>
-        <td><p>Path for read the image folder. Please note that the path need to contain only valid images
-and no folders or other files.</p></td>
+        <td><p>Path for reading the image folder. Please note that the path should only contain valid
+images and no folders or other files.</p></td>
         <td><em>required</em></td>
       </tr>
   </tbody>
@@ -3776,8 +3776,8 @@ and no folders or other files.</p></td>
     <span class="sd">&quot;&quot;&quot;Init method for the Model class.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        read_dir (str): Path for read the image folder. Please note that the path need to contain only valid images</span>
-<span class="sd">            and no folders or other files.</span>
+<span class="sd">        read_dir (str): Path for reading the image folder. Please note that the path should only contain valid</span>
+<span class="sd">            images and no folders or other files.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: If the path is not valid.</span>
@@ -4058,8 +4058,8 @@ model.load(path=&quot;./model.hocrox&quot;)
 
     <div class="doc doc-contents ">
 
-      <p>Save the defined pipeline for filesystem.</p>
-<p>It internally uses pickle to save the model.</p>
+      <p>Save the model into the filesystem.</p>
+<p>It internally uses the pickle module to save the model.</p>
 <p>Here is an example code to use .save() function in a model.</p>
 <pre><code class="language-python">from hocrox.model import Model
 
@@ -4110,9 +4110,9 @@ model.save(path=&quot;./model.hocrox&quot;)
         <details class="quote">
           <summary>Source code in <code>hocrox/model/model.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save the defined pipeline for filesystem.</span>
+    <span class="sd">&quot;&quot;&quot;Save the model into the filesystem.</span>
 
-<span class="sd">    It internally uses pickle to save the model.</span>
+<span class="sd">    It internally uses the pickle module to save the model.</span>
 
 <span class="sd">    Here is an example code to use .save() function in a model.</span>
 
@@ -4162,7 +4162,7 @@ model.save(path=&quot;./model.hocrox&quot;)
 
     <div class="doc doc-contents ">
 
-      <p>Generate summary of the model.</p>
+      <p>Generate a summary of the model.</p>
 <p>Here is an example code to use .summary() function in a model.</p>
 <pre><code class="language-python">from hocrox.model import Model
 
@@ -4186,7 +4186,7 @@ print(model.summary())
   </thead>
   <tbody>
     <tr>
-      <td><code>sre</code></td>
+      <td><code>str</code></td>
       <td><p>Summary of the model.</p></td>
     </tr>
   </tbody>
@@ -4194,7 +4194,7 @@ print(model.summary())
         <details class="quote">
           <summary>Source code in <code>hocrox/model/model.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate summary of the model.</span>
+    <span class="sd">&quot;&quot;&quot;Generate a summary of the model.</span>
 
 <span class="sd">    Here is an example code to use .summary() function in a model.</span>
 
@@ -4212,7 +4212,7 @@ print(model.summary())
 <span class="sd">    ```</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        sre: Summary of the model.</span>
+<span class="sd">        str: Summary of the model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">PrettyTable</span><span class="p">([</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Parameters&quot;</span><span class="p">])</span>
 
@@ -4242,7 +4242,7 @@ print(model.summary())
 
     <div class="doc doc-contents ">
 
-      <p>Perform the transformation of the images using the defined the model pipeline.</p>
+      <p>Perform the transformation of the images using the defined model pipeline.</p>
 <p>Here is an example code to use .transform() function in a model.</p>
 <pre><code class="language-python">from hocrox.model import Model
 
@@ -4259,7 +4259,7 @@ model.transform()
         <details class="quote">
           <summary>Source code in <code>hocrox/model/model.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Perform the transformation of the images using the defined the model pipeline.</span>
+    <span class="sd">&quot;&quot;&quot;Perform the transformation of the images using the defined model pipeline.</span>
 
 <span class="sd">    Here is an example code to use .transform() function in a model.</span>
 
@@ -4338,6 +4338,7 @@ model.transform()
     <div class="doc doc-contents ">
 
       <p>Utility module for Hocrox library.</p>
+<p>This module contains some utility classes and functions.</p>
 
 
 
@@ -4391,7 +4392,7 @@ model.transform()
     <div class="doc doc-contents ">
 
       <p>Check if the layer is valid or not.</p>
-<p>This function needed to be used when building custom layers to confirm the layer is valid.</p>
+<p>This function is used to check if the layer is valid or not. It should be used when building custom layers.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -4432,7 +4433,7 @@ model.transform()
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_valid_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check if the layer is valid or not.</span>
 
-<span class="sd">    This function needed to be used when building custom layers to confirm the layer is valid.</span>
+<span class="sd">    This function is used to check if the layer is valid or not. It should be used when building custom layers.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        layer (class): Custom layer class.</span>
@@ -4515,7 +4516,7 @@ Layer        </code>
     <div class="doc doc-contents ">
 
       <p>Layer class is used to make layers for Hocrox.</p>
-<p>Here is an example code for making a new custom CropCustom Hocrox layer using this Layer class as basedclass.</p>
+<p>Here is an example code for making a new custom CropCustom Hocrox layer using this Layer class as a base class.</p>
 <pre><code class="language-python">from hocrox.utils import Layer
 
 class CropCustom(Layer):
@@ -4555,6 +4556,8 @@ class CropCustom(Layer):
             f&quot;X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}&quot;,
         )
 
+    # This method below receives a list of images and name of the image, transforms the images, and finally
+    # returns the transformed image
     def _apply_layer(self, images, name=None):
         transformed_images = []
 
@@ -4620,7 +4623,7 @@ class CropCustom(Layer):
       <tr>
         <td><code>supported_parent_layer</code></td>
         <td><code>list</code></td>
-        <td><p>List of layers that the current layers supports as parent.</p></td>
+        <td><p>List of layers that the current layers support as a parent.</p></td>
         <td><em>required</em></td>
       </tr>
       <tr>
@@ -4677,7 +4680,7 @@ when making new custom layers. Defaults to False.</p></td>
 <span class="sd">    Args:</span>
 <span class="sd">        name (str): Name of the layer.</span>
 <span class="sd">        type (str): Type of the layer</span>
-<span class="sd">        supported_parent_layer (list): List of layers that the current layers supports as parent.</span>
+<span class="sd">        supported_parent_layer (list): List of layers that the current layers support as a parent.</span>
 <span class="sd">        parameter_str (str): Parameter string used for model summary generation.</span>
 <span class="sd">        bypass_validation (bool, optional): Flag to bypass validation flags in model.add() function. Used heavy</span>
 <span class="sd">            when making new custom layers. Defaults to False.</span>
