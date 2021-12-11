@@ -2,6 +2,14 @@
 
 An image preprocessing and augmentation library with Keras like interface.
 
+[![Hocrox Code Check](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml/badge.svg)](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml)
+![Maitained](https://img.shields.io/badge/Maitained%3F-Yes-brightgreen)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/Hocrox?style=flat)
+![PyPI](https://img.shields.io/pypi/v/Hocrox?style=flat)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/imdeepmind/hocrox?style=flat)
+![GitHub issues](https://img.shields.io/github/issues/imdeepmind/hocrox?style=flat)
+![GitHub](https://img.shields.io/github/license/imdeepmind/hocrox?style=flat)
+
 ## Introduction
 
 Hocrox is an image preprocessing and augmentation library. It provides a [Keras](https://keras.io/) like simple interface to make preprocessing and augmentation pipelines. Hocrox internally uses [OpenCV](https://opencv.org/) to perform the operations on images. OpenCV is one of the most popular Computer Vision library.
