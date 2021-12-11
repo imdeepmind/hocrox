@@ -4,7 +4,7 @@
 def is_valid_layer(layer):
     """Check if the layer is valid or not.
 
-    This function needed to be used when building custom layers to confirm the layer is valid.
+    This function is used to check if the layer is valid or not. It should be used when building custom layers.
 
     Args:
         layer (class): Custom layer class.
