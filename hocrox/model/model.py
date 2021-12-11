@@ -13,9 +13,6 @@ from hocrox.utils import is_valid_layer
 class Model:
     """Model class is used for making Hocrox models.
 
-    Models are the heart of Hocrox. In Hocrox, the model contains the entire pipeline for preprocessing and/or
-    augmenting the image.
-
     Here is an example code to use the Model class for making a Hocrox model.
 
     ```python
@@ -38,8 +35,8 @@ class Model:
         """Init method for the Model class.
 
         Args:
-            read_dir (str): Path for read the image folder. Please note that the path need to contain only valid images
-                and no folders or other files.
+            read_dir (str): Path for reading the image folder. Please note that the path should only contain valid
+                images and no folders or other files.
 
         Raises:
             ValueError: If the path is not valid.
@@ -94,7 +91,7 @@ class Model:
         self.__layers.append(layer)
 
     def summary(self):
-        """Generate summary of the model.
+        """Generate a summary of the model.
 
         Here is an example code to use .summary() function in a model.
 
@@ -112,7 +109,7 @@ class Model:
         ```
 
         Returns:
-            sre: Summary of the model.
+            str: Summary of the model.
         """
         t = PrettyTable(["Index", "Name", "Parameters"])
 
@@ -124,7 +121,7 @@ class Model:
         return str(t)
 
     def transform(self):
-        """Perform the transformation of the images using the defined the model pipeline.
+        """Perform the transformation of the images using the defined model pipeline.
 
         Here is an example code to use .transform() function in a model.
 
@@ -169,9 +166,9 @@ class Model:
         self.__frozen = True
 
     def save(self, path):
-        """Save the defined pipeline for filesystem.
+        """Save the model into the filesystem.
 
-        It internally uses pickle to save the model.
+        It internally uses the pickle module to save the model.
 
         Here is an example code to use .save() function in a model.
 
