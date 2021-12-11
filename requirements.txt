@@ -15,7 +15,6 @@ docutils==0.18.1
 filelock==3.4.0
 flake8==4.0.1
 ghp-import==2.0.2
--e git+git@github.com:imdeepmind/hocrox.git@a1d504bb110a6e07b1fc87ad2f9b503e8ae32ee4#egg=Hocrox
 identify==2.4.0
 idna==3.3
 importlib-metadata==4.8.2
