@@ -4,7 +4,7 @@
 class Layer:
     """Layer class is used to make layers for Hocrox.
 
-    Here is an example code for making a new custom CropCustom Hocrox layer using this Layer class as basedclass.
+    Here is an example code for making a new custom CropCustom Hocrox layer using this Layer class as a base class.
 
     ```python
     from hocrox.utils import Layer
@@ -46,6 +46,8 @@ class Layer:
                 f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
             )
 
+        # This method below receives a list of images and name of the image, transforms the images, and finally
+        # returns the transformed image
         def _apply_layer(self, images, name=None):
             transformed_images = []
 
@@ -62,7 +64,7 @@ class Layer:
         Args:
             name (str): Name of the layer.
             type (str): Type of the layer
-            supported_parent_layer (list): List of layers that the current layers supports as parent.
+            supported_parent_layer (list): List of layers that the current layers support as a parent.
             parameter_str (str): Parameter string used for model summary generation.
             bypass_validation (bool, optional): Flag to bypass validation flags in model.add() function. Used heavy
                 when making new custom layers. Defaults to False.
