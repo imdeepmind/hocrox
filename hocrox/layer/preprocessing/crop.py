@@ -73,6 +73,7 @@ class Crop(Layer):
                 "random_rotate",
                 "random_flip",
                 "read",
+                "rescale",
             ],
             f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
         )

@@ -7,3 +7,4 @@ from .crop import Crop
 from .pading import Padding
 from .horizontal_flip import HorizontalFlip
 from .vertical_flip import VerticalFlip
+from .rescale import Resscale

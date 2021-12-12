@@ -56,6 +56,7 @@ class RandomFlip(Layer):
                 "random_rotate",
                 "random_flip",
                 "read",
+                "rescale",
             ],
             f"Number of Outputs: {number_of_outputs}",
         )
