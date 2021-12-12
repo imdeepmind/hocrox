@@ -51,6 +51,9 @@ class Model:
         if not is_valid_layer(layer):
             raise ValueError("The layer is not a valid layer")
 
+        if len(self.__layers) == 0 and layer._get_type() != "read":
+            raise ValueError("The first layer needed to be a read layer")
+
         if len(self.__layers) > 0:
             previous_layer_type = self.__layers[-1]._get_type()
 
@@ -111,15 +114,11 @@ class Model:
         ```
         """
         read_image_layer = self.__layers[0]
+        images, gen = read_image_layer._apply_layer()
 
-        if read_image_layer._get_type() == "read":
-            images, gen = read_image_layer._apply_layer()
-
-            for path, image in tqdm(gen, total=len(images)):
-                for layer in self.__layers[1:]:
-                    image = layer._apply_layer(image, path)
-        else:
-            raise ValueError("First layer needed to be a Read layer.")
+        for path, image in tqdm(gen, total=len(images)):
+            for layer in self.__layers[1:]:
+                image = layer._apply_layer(image, path)
 
     def freeze(self):
         """Freeze the model. Frozen models cannot be modified.
