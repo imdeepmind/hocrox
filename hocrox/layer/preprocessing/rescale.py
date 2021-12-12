@@ -1,17 +1,15 @@
-"""VerticalFlip layer for Hocrox."""
-import cv2
-
+"""Resscale layer for Hocrox."""
 from hocrox.utils import Layer
 
 
-class VerticalFlip(Layer):
-    """VerticalFlip layer vertically flips an image.
+class Resscale(Layer):
+    """Resscale layer rescales an image.
 
-    Here is an example code to use the Crop layer in a model.
+    Here is an example code to use the Resscale layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import VerticalFlip
+    from hocrox.layer.preprocessing import Resscale
     from hocrox.layer import Read
 
     # Initializing the model
@@ -19,24 +17,32 @@ class VerticalFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(VerticalFlip())
+    model.add(Resscale(rescale=1.0 / 255.0))
 
     # Printing the summary of the model
     print(model.summary())
     ```
     """
 
-    def __init__(self, name=None):
-        """Init method for horizontal flip layer.
+    def __init__(self, rescale=1.0 / 255.0, name=None):
+        """Init method for Resize layer.
 
         Args:
+            rescale (float, optional): Rescale factor for rescaling image, Defaults to 1.0 / 255.0.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
+        Raises:
+            ValueError: If the rescale parameter is not valid
         """
+        if not isinstance(rescale, float):
+            raise ValueError(f"The value {rescale} for the argument rescale is not valid")
+
+        self.__rescale = rescale
+
         super().__init__(
             name,
-            "vertical_flip",
+            "rescale",
             [
                 "resize",
                 "greyscale",
@@ -51,7 +57,7 @@ class VerticalFlip(Layer):
                 "read",
                 "rescale",
             ],
-            "-",
+            f"Rescale: {self.__rescale}",
         )
 
     def _apply_layer(self, images, name=None):
@@ -67,6 +73,6 @@ class VerticalFlip(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(cv2.flip(image, 0))
+            transformed_images.append(image * self.__rescale)
 
         return transformed_images

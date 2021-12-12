@@ -73,6 +73,7 @@ class Resize(Layer):
                 "random_rotate",
                 "random_flip",
                 "read",
+                "rescale",
             ],
             f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
         )

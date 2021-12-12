@@ -64,6 +64,7 @@ class Save(Layer):
                 "random_rotate",
                 "random_flip",
                 "read",
+                "rescale",
             ],
             f"Path: {self.__path}, Format: {self.__format}",
         )
