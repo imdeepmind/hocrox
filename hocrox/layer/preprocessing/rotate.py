@@ -71,6 +71,7 @@ class Rotate(Layer):
                 "vertical_flip",
                 "random_rotate",
                 "random_flip",
+                "read",
             ],
             f"Angle: {self.__angle}",
         )

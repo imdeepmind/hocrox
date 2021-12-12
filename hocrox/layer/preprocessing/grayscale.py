@@ -46,6 +46,7 @@ class Grayscale(Layer):
                 "vertical_flip",
                 "random_rotate",
                 "random_flip",
+                "read",
             ],
             "-",
         )

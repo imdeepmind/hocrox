@@ -1,8 +1,6 @@
 """Model class for Hocrox."""
 
 import pickle
-import cv2
-import os
 
 from prettytable import PrettyTable
 from tqdm import tqdm
@@ -31,36 +29,10 @@ class Model:
     ```
     """
 
-    def __init__(self, read_dir):
-        """Init method for the Model class.
-
-        Args:
-            read_dir (str): Path for reading the image folder. Please note that the path should only contain valid
-                images and no folders or other files.
-
-        Raises:
-            ValueError: If the path is not valid.
-        """
-        if not isinstance(read_dir, str):
-            raise ValueError("Please provide a valid read_dir path")
-
+    def __init__(self):
+        """Init method for the Model class."""
         self.__frozen = False
         self.__layers = []
-        self.__read_dir = read_dir
-
-    def __read_image_gen(self, images):
-        """Read images from the filesystem and returns a generator.
-
-        Args:
-            images (list): List of images to read
-
-        Yields:
-            ndarray: Image in the form of numpy ndarray.
-        """
-        for path in images:
-            image = cv2.imread(os.path.join(self.__read_dir, path), 1)
-
-            yield path, [image]
 
     def add(self, layer):
         """Add a new layer to the model.
@@ -138,12 +110,16 @@ class Model:
         model.transform()
         ```
         """
-        images = os.listdir(self.__read_dir)
-        gen = self.__read_image_gen(images)
+        read_image_layer = self.__layers[0]
 
-        for path, image in tqdm(gen, total=len(images)):
-            for layer in self.__layers:
-                image = layer._apply_layer(image, path)
+        if read_image_layer._get_type() == "read":
+            images, gen = read_image_layer._apply_layer()
+
+            for path, image in tqdm(gen, total=len(images)):
+                for layer in self.__layers[1:]:
+                    image = layer._apply_layer(image, path)
+        else:
+            raise ValueError("First layer needed to be a Read layer.")
 
     def freeze(self):
         """Freeze the model. Frozen models cannot be modified.

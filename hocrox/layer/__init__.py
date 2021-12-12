@@ -20,3 +20,4 @@ Currently, in Hocrox, there are several layers. The complete list is below.
 
 from . import preprocessing
 from . import augmentation
+from .read import Read
