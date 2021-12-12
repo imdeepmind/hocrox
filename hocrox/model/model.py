@@ -1,8 +1,6 @@
 """Model class for Hocrox."""
 
 import pickle
-import cv2
-import os
 
 from prettytable import PrettyTable
 from tqdm import tqdm
@@ -18,11 +16,13 @@ class Model:
     ```python
     from hocrox.model import Model
     from hocrox.layer.augmentation import RandomFlip, RandomRotate
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(RandomFlip(number_of_outputs=2))
     model.add(RandomRotate(start_angle=-10.0, end_angle=10.0, number_of_outputs=5))
 
@@ -31,36 +31,10 @@ class Model:
     ```
     """
 
-    def __init__(self, read_dir):
-        """Init method for the Model class.
-
-        Args:
-            read_dir (str): Path for reading the image folder. Please note that the path should only contain valid
-                images and no folders or other files.
-
-        Raises:
-            ValueError: If the path is not valid.
-        """
-        if not isinstance(read_dir, str):
-            raise ValueError("Please provide a valid read_dir path")
-
+    def __init__(self):
+        """Init method for the Model class."""
         self.__frozen = False
         self.__layers = []
-        self.__read_dir = read_dir
-
-    def __read_image_gen(self, images):
-        """Read images from the filesystem and returns a generator.
-
-        Args:
-            images (list): List of images to read
-
-        Yields:
-            ndarray: Image in the form of numpy ndarray.
-        """
-        for path in images:
-            image = cv2.imread(os.path.join(self.__read_dir, path), 1)
-
-            yield path, [image]
 
     def add(self, layer):
         """Add a new layer to the model.
@@ -72,12 +46,16 @@ class Model:
             ValueError: If the model is frozen.
             ValueError: If the layer is not valid.
             ValueError: If the layer does support the parent layer.
+            ValueError: If the first layer is not a read layer.
         """
         if self.__frozen:
             raise ValueError("Model is frozen")
 
         if not is_valid_layer(layer):
             raise ValueError("The layer is not a valid layer")
+
+        if len(self.__layers) == 0 and layer._get_type() != "read":
+            raise ValueError("The first layer needed to be a read layer")
 
         if len(self.__layers) > 0:
             previous_layer_type = self.__layers[-1]._get_type()
@@ -99,7 +77,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -129,7 +107,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -138,11 +116,11 @@ class Model:
         model.transform()
         ```
         """
-        images = os.listdir(self.__read_dir)
-        gen = self.__read_image_gen(images)
+        read_image_layer = self.__layers[0]
+        images, gen = read_image_layer._apply_layer()
 
         for path, image in tqdm(gen, total=len(images)):
-            for layer in self.__layers:
+            for layer in self.__layers[1:]:
                 image = layer._apply_layer(image, path)
 
     def freeze(self):
@@ -154,7 +132,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -176,7 +154,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -208,7 +186,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...

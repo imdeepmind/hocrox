@@ -12,11 +12,13 @@ class VerticalFlip(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing import VerticalFlip
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(VerticalFlip())
 
     # Printing the summary of the model
@@ -46,6 +48,7 @@ class VerticalFlip(Layer):
                 "vertical_flip",
                 "random_rotate",
                 "random_flip",
+                "read",
             ],
             "-",
         )

@@ -13,11 +13,13 @@ class Rotate(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing import Grayscale
+    from hocrox.layer import Hocrox
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(Grayscale())
 
     # Printing the summary of the model
@@ -71,6 +73,7 @@ class Rotate(Layer):
                 "vertical_flip",
                 "random_rotate",
                 "random_flip",
+                "read",
             ],
             f"Angle: {self.__angle}",
         )

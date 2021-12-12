@@ -14,11 +14,13 @@ class Save(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing import Save
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(Save(path="./img_to_store", format="npy"))
 
     # Printing the summary of the model
@@ -62,6 +64,7 @@ class Save(Layer):
                 "vertical_flip",
                 "random_rotate",
                 "random_flip",
+                "read",
             ],
             f"Path: {self.__path}, Format: {self.__format}",
         )

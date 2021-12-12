@@ -28,6 +28,7 @@ from hocrox.model import Model
 
 from hocrox.layer.preprocessing import Resize, Grayscale
 from hocrox.layer.augmentation import RandomRotate, RandomFlip
+from hocrox.layer import Read
 ```
 
 ## Making the model#
@@ -36,9 +37,10 @@ The model class provides an easy `.add()` method to add layers. We will use the 
 
 ```python
 # Initializing the model
-model = Model("./images")
+model = Model()
 
 # Adding model layers
+model.add(Read(path="./img"))
 model.add(Resize((224, 224)))
 model.add(Grayscale())
 model.add(RandomFlip(number_of_outputs=2))
