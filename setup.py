@@ -9,7 +9,7 @@ Keras like simple interface to make preprocessing and augmentation pipelines."
 
 setuptools.setup(
     name="Hocrox",  # This is the name of the package
-    version="0.0.1",  # The initial release version
+    version="0.2.0",  # The initial release version
     author="Abhishek Chatterjee",  # Full name of the author
     description=description,
     long_description=long_description,  # Long description read from the the readme file
