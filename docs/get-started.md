@@ -28,7 +28,7 @@ from hocrox.model import Model
 
 from hocrox.layer.preprocessing import Resize, Grayscale
 from hocrox.layer.augmentation import RandomRotate, RandomFlip
-from hocrox.layer import Read
+from hocrox.layer import Read, Save
 ```
 
 ## Making the model#
