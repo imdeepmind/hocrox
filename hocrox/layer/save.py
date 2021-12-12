@@ -13,8 +13,7 @@ class Save(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Save
-    from hocrox.layer import Read
+    from hocrox.layer import Read, Save
 
     # Initializing the model
     model = Model()
