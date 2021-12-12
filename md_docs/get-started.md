@@ -26,7 +26,7 @@ Here we make a simple model with some basic preprocessing and augmentation layer
 ```python
 from hocrox.model import Model
 
-from hocrox.layer.preprocessing import Resize, Grayscale,
+from hocrox.layer.preprocessing import Resize, Grayscale
 from hocrox.layer.augmentation import RandomRotate, RandomFlip
 ```
 
