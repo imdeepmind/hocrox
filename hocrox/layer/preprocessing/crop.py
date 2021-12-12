@@ -10,11 +10,13 @@ class Crop(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing import Crop
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(Crop(x=10, y=10, w=100, h=100))
 
     # Printing the summary of the model

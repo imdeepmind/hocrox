@@ -15,10 +15,10 @@ class Read(Layer):
     from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
-    model.add(Read(path="./img_to_store", format="npy"))
+    model.add(Read(path="./img"))
 
     # Printing the summary of the model
     print(model.summary())

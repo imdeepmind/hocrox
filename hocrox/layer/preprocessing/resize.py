@@ -12,11 +12,13 @@ class Resize(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing import Resize
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(Resize(dim=(200,200), interpolation="INTER_LINEAR"))
 
     # Printing the summary of the model

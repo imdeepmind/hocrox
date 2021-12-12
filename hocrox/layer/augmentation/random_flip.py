@@ -13,11 +13,13 @@ class RandomFlip(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.augmentation import RandomFlip
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(RandomFlip(number_of_outputs=1))
 
     # Printing the summary of the model

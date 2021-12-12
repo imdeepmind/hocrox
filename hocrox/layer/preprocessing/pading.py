@@ -12,11 +12,13 @@ class Padding(Layer):
     ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing import Padding
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(Padding(top=20, bottom=20, left=20, right=20, color=[255, 255, 255]))
 
     # Printing the summary of the model
