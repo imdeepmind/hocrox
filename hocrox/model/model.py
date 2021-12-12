@@ -16,11 +16,13 @@ class Model:
     ```python
     from hocrox.model import Model
     from hocrox.layer.augmentation import RandomFlip, RandomRotate
+    from hocrox.layer import Read
 
     # Initializing the model
-    model = Model("./img")
+    model = Model()
 
     # Adding model layers
+    model.add(Read(path="./img"))
     model.add(RandomFlip(number_of_outputs=2))
     model.add(RandomRotate(start_angle=-10.0, end_angle=10.0, number_of_outputs=5))
 
@@ -44,6 +46,7 @@ class Model:
             ValueError: If the model is frozen.
             ValueError: If the layer is not valid.
             ValueError: If the layer does support the parent layer.
+            ValueError: If the first layer is not a read layer.
         """
         if self.__frozen:
             raise ValueError("Model is frozen")
@@ -74,7 +77,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -104,7 +107,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -129,7 +132,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -151,7 +154,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
@@ -183,7 +186,7 @@ class Model:
         from hocrox.model import Model
 
         # Initializing the model
-        model = Model("./img")
+        model = Model()
 
         ...
         ...
