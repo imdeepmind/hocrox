@@ -16,8 +16,8 @@ nav:
   - "blogs.md"
   - "contributors.md"
 site_url: https://hocrox.imdeepmind.com/
-docs_dir: md_docs
-site_dir: docs
+docs_dir: docs
+site_dir: site
 extra:
   version:
     provider: mike
