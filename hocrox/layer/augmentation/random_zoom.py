@@ -42,10 +42,10 @@ class RandomZoom(Layer):
             ValueError: If the end parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
-        if isinstance(start, int) and start >= 0 and start < 1:
+        if not (isinstance(start, float) and start >= 0 and start < 1):
             raise ValueError(f"The value {start} for the argument start is not valid")
 
-        if isinstance(end, int) and end > 0 and end <= 1:
+        if not (isinstance(end, float) and end > 0 and end <= 1):
             raise ValueError(f"The value {end} for the argument end is not valid")
 
         if isinstance(number_of_outputs, int) and number_of_outputs < 1:
@@ -97,6 +97,16 @@ class RandomZoom(Layer):
 
     @staticmethod
     def __zoom(img, start, end):
+        """Zoom the image.
+
+        Args:
+            img (ndarray): Image to zoom
+            start (float): Start range of the zoom
+            end (float): End range of the zoom
+
+        Returns:
+            ndarray: Zoomed image
+        """
         zoom_value = random.uniform(start, end)
 
         h, w = img.shape[:2]
