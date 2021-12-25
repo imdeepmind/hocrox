@@ -82,6 +82,7 @@ class Padding(Layer):
                 "random_flip",
                 "read",
                 "rescale",
+                "random_zoom",
             ],
             f"Top: {self.__top}, Bottom: {self.__bottom}, Left: {self.__left}, Right: {self.__right}",
         )

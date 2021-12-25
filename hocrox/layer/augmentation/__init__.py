@@ -11,3 +11,4 @@ In Hocrox, currently, there are only 2 augmentation layers, RandomFlip and Rando
 
 from .random_rotate import RandomRotate
 from .random_flip import RandomFlip
+from .random_zoom import RandomZoom

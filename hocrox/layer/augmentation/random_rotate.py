@@ -93,6 +93,7 @@ class RandomRotate(Layer):
                 "random_flip",
                 "read",
                 "rescale",
+                "random_zoom",
             ],
             f"Number of Outputs: {number_of_outputs}",
         )

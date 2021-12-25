@@ -50,6 +50,7 @@ class HorizontalFlip(Layer):
                 "random_flip",
                 "read",
                 "rescale",
+                "random_zoom",
             ],
             "-",
         )
