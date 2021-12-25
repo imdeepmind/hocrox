@@ -58,6 +58,7 @@ class RandomFlip(Layer):
                 "read",
                 "rescale",
                 "random_zoom",
+                "random_brightness",
             ],
             f"Number of Outputs: {number_of_outputs}",
         )
