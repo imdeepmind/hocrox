@@ -84,6 +84,7 @@ class Padding(Layer):
                 "rescale",
                 "random_zoom",
                 "random_brightness",
+                "random_channel_shift",
             ],
             f"Top: {self.__top}, Bottom: {self.__bottom}, Left: {self.__left}, Right: {self.__right}",
         )

@@ -70,6 +70,7 @@ class RandomBrightness(Layer):
                 "rescale",
                 "random_zoom",
                 "random_brightness",
+                "random_channel_shift",
             ],
             f"Low: {low}, High:{high}, Number of Outputs: {number_of_outputs}",
         )

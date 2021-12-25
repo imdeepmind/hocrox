@@ -76,6 +76,7 @@ class Crop(Layer):
                 "rescale",
                 "random_zoom",
                 "random_brightness",
+                "random_channel_shift",
             ],
             f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
         )

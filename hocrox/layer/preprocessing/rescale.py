@@ -58,6 +58,7 @@ class Resscale(Layer):
                 "rescale",
                 "random_zoom",
                 "random_brightness",
+                "random_channel_shift",
             ],
             f"Rescale: {self.__rescale}",
         )
