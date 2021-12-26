@@ -49,7 +49,7 @@ class RandomBrightness(Layer):
         if not (isinstance(high, float)):
             raise ValueError(f"The value {high} for the argument high is not valid")
 
-        if isinstance(number_of_outputs, int) and number_of_outputs < 1:
+        if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
         super().__init__(

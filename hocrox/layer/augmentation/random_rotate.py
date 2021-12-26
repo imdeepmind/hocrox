@@ -70,7 +70,7 @@ class RandomRotate(Layer):
         if start_angle > end_angle:
             raise ValueError(f"The value {start_angle} for the argument start_angle is not valid")
 
-        if isinstance(number_of_outputs, int) and number_of_outputs < 1:
+        if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
         self.__start_angle = start_angle
