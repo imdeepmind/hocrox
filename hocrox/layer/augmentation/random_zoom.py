@@ -50,6 +50,9 @@ class RandomZoom(Layer):
         if not (isinstance(end, float) and end > 0 and end <= 1):
             raise ValueError(f"The value {end} for the argument end is not valid")
 
+        if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
+            raise ValueError(f"The value {probability} for the argument probability is not valid")
+
         if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
