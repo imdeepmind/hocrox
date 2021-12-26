@@ -27,11 +27,13 @@ class RandomVerticalShift(Layer):
     ```
     """
 
-    def __init__(self, ratio=0.7, number_of_outputs=1, name=None):
+    def __init__(self, ratio=0.7, probability=1.0, number_of_outputs=1, name=None):
         """Init method for the RandomVerticalShift layer.
 
         Args:
             ratio (float, optional): Ratio is used to define the range of the shift. Defaults to 0.7.
+            probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
+                on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -42,6 +44,9 @@ class RandomVerticalShift(Layer):
         """
         if not (isinstance(ratio, float)):
             raise ValueError(f"The value {ratio} for the argument ratio is not valid")
+
+        if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
+            raise ValueError(f"The value {probability} for the argument probability is not valid")
 
         if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
@@ -68,11 +73,12 @@ class RandomVerticalShift(Layer):
                 "random_horizontal_shift",
                 "random_vertical_shift",
             ],
-            f"Ratio:{ratio}, Number of Outputs: {number_of_outputs}",
+            f"Ratio:{ratio}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
         self.__number_of_outputs = number_of_outputs
         self.__ratio = ratio
+        self.__probability = probability
 
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -88,7 +94,9 @@ class RandomVerticalShift(Layer):
 
         for image in images:
             for _ in range(self.__number_of_outputs):
-                transformed_images.append(self.__vertical_shift(image, self.__ratio))
+                should_perform = self._get_probability(self.__probability)
+
+                transformed_images.append(self.__vertical_shift(image, self.__ratio) if should_perform else image)
 
         return transformed_images
 

@@ -28,12 +28,14 @@ class RandomBrightness(Layer):
     ```
     """
 
-    def __init__(self, low=0.5, high=3.0, number_of_outputs=1, name=None):
+    def __init__(self, low=0.5, high=3.0, probability=1.0, number_of_outputs=1, name=None):
         """Init method for the RandomBrightness layer.
 
         Args:
             low (float, optional): Starting range of the brightness. Defaults to 0.5.
             high (float, optional): Ending range of the brightness. Defaults to 3.0.
+            probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
+                on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -48,6 +50,9 @@ class RandomBrightness(Layer):
 
         if not (isinstance(high, float)):
             raise ValueError(f"The value {high} for the argument high is not valid")
+
+        if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
+            raise ValueError(f"The value {probability} for the argument probability is not valid")
 
         if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
@@ -74,12 +79,13 @@ class RandomBrightness(Layer):
                 "random_horizontal_shift",
                 "random_vertical_shift",
             ],
-            f"Low: {low}, High:{high}, Number of Outputs: {number_of_outputs}",
+            f"Low: {low}, High:{high}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
         self.__number_of_outputs = number_of_outputs
         self.__low = low
         self.__high = high
+        self.__probability = probability
 
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -95,7 +101,11 @@ class RandomBrightness(Layer):
 
         for image in images:
             for _ in range(self.__number_of_outputs):
-                transformed_images.append(self.__brightness(image, self.__low, self.__high))
+                should_perform = self._get_probability(self.__probability)
+
+                transformed_images.append(
+                    self.__brightness(image, self.__low, self.__high) if should_perform else image
+                )
 
         return transformed_images
 
