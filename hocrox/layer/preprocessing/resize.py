@@ -74,6 +74,11 @@ class Resize(Layer):
                 "random_flip",
                 "read",
                 "rescale",
+                "random_zoom",
+                "random_brightness",
+                "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
         )

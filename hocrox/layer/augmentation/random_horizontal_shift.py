@@ -1,18 +1,18 @@
-"""RandomFlip layer for Hocrox."""
-import cv2
+"""RandomHorizontalShift layer for Hocrox."""
 import random
+import cv2
 
 from hocrox.utils import Layer
 
 
-class RandomFlip(Layer):
-    """RandomFlip layer randomly flips the image vertically or horizontally.
+class RandomHorizontalShift(Layer):
+    """RandomHorizontalShift layer randomly shifts the image horizontally.
 
-    Here is an example code to use the RandomFlip layer in a model.
+    Here is an example code to use the RandomHorizontalShift layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomFlip
+    from hocrox.layer.augmentation import RandomHorizontalShift
     from hocrox.layer import Read
 
     # Initializing the model
@@ -20,30 +20,35 @@ class RandomFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomFlip(number_of_outputs=1))
+    model.add(RandomHorizontalShift(ratio=0.7, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
     ```
     """
 
-    def __init__(self, number_of_outputs=1, name=None):
-        """Init method for the RandomFlip layer.
+    def __init__(self, ratio=0.7, number_of_outputs=1, name=None):
+        """Init method for the RandomHorizontalShift layer.
 
         Args:
+            ratio (float, optional): Ratio is used to define the range of the shift. Defaults to 0.7.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:
+            ratioError: If the ratio parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
+        if not (isinstance(ratio, float)):
+            raise ValueError(f"The value {ratio} for the argument ratio is not valid")
+
         if isinstance(number_of_outputs, int) and number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
         super().__init__(
             name,
-            "random_flip",
+            "random_horizontal_shift",
             [
                 "resize",
                 "greyscale",
@@ -63,10 +68,11 @@ class RandomFlip(Layer):
                 "random_horizontal_shift",
                 "random_vertical_shift",
             ],
-            f"Number of Outputs: {number_of_outputs}",
+            f"Ratio:{ratio}, Number of Outputs: {number_of_outputs}",
         )
 
         self.__number_of_outputs = number_of_outputs
+        self.__ratio = ratio
 
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -82,7 +88,31 @@ class RandomFlip(Layer):
 
         for image in images:
             for _ in range(self.__number_of_outputs):
-                flip = random.randint(0, 1)
-                transformed_images.append(cv2.flip(image, flip))
+                transformed_images.append(self.__horizontal_shift(image, self.__ratio))
 
         return transformed_images
+
+    @staticmethod
+    def __horizontal_shift(img, ratio):
+        """Apply horizontal_shift function to the image.
+
+        Args:
+            img (ndarray): Image to change the brightness
+            ratio (float): High range of the brightness
+
+        Returns:
+            ndarray: Updated image
+        """
+        ratio = random.uniform(-ratio, ratio)
+
+        h, w = img.shape[:2]
+        to_shift = w * ratio
+
+        if ratio > 0:
+            img = img[:, : int(w - to_shift), :]
+        if ratio < 0:
+            img = img[:, int(-1 * to_shift) :, :]
+
+        img = img = cv2.resize(img, (h, w), cv2.INTER_CUBIC)
+
+        return img
