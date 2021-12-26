@@ -37,7 +37,7 @@ class RandomHorizontalShift(Layer):
                 the layer. Defaults to None.
 
         Raises:
-            ratioError: If the ratio parameter is not valid
+            ValueError: If the ratio parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(ratio, float)):
