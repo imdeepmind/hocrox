@@ -6,7 +6,7 @@ from hocrox.utils import Layer
 
 
 class RandomZoom(Layer):
-    """RandomZoom layer randomly zooms the image.
+    """RandomZoom layer randomly zooms the image based on the defined range.
 
     Here is an example code to use the RandomZoom layer in a model.
 
@@ -70,6 +70,8 @@ class RandomZoom(Layer):
                 "random_zoom",
                 "random_brightness",
                 "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Start: {start}, end:{end}, Number of Outputs: {number_of_outputs}",
         )

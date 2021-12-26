@@ -68,6 +68,8 @@ class Save(Layer):
                 "random_zoom",
                 "random_brightness",
                 "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Path: {self.__path}, Format: {self.__format}",
         )

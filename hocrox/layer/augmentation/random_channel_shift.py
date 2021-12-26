@@ -6,7 +6,7 @@ from hocrox.utils import Layer
 
 
 class RandomChannelShift(Layer):
-    """RandomChannelShift layer randomly zooms the image.
+    """RandomChannelShift layer randomly adds some value to the channels in the image.
 
     Here is an example code to use the RandomChannelShift layer in a model.
 
@@ -70,6 +70,8 @@ class RandomChannelShift(Layer):
                 "random_zoom",
                 "random_brightness",
                 "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Low: {low}, High:{high}, Number of Outputs: {number_of_outputs}",
         )
@@ -113,6 +115,7 @@ class RandomChannelShift(Layer):
         img = img + value
         img[:, :, :][img[:, :, :] > 255] = 255
         img[:, :, :][img[:, :, :] < 0] = 0
+
         img = img.astype(np.uint8)
 
         return img

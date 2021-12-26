@@ -6,7 +6,7 @@ from hocrox.utils import Layer
 
 
 class RandomHorizontalShift(Layer):
-    """RandomHorizontalShift layer randomly zooms the image.
+    """RandomHorizontalShift layer randomly shifts the image horizontally.
 
     Here is an example code to use the RandomHorizontalShift layer in a model.
 
@@ -20,7 +20,7 @@ class RandomHorizontalShift(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomHorizontalShift(low=1, high=5, number_of_outputs=1))
+    model.add(RandomHorizontalShift(ratio=0.7, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -31,14 +31,13 @@ class RandomHorizontalShift(Layer):
         """Init method for the RandomHorizontalShift layer.
 
         Args:
-            ratio (float, optional): Starting range of the brightness. Defaults to 0.5.
+            ratio (float, optional): Ratio is used to define the range of the shift. Defaults to 0.7.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:
-            ratioError: If the low parameter is not valid
-            ValueError: If the high parameter is not valid
+            ratioError: If the ratio parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(ratio, float)):
@@ -49,7 +48,7 @@ class RandomHorizontalShift(Layer):
 
         super().__init__(
             name,
-            "random_channel_shift",
+            "random_horizontal_shift",
             [
                 "resize",
                 "greyscale",
@@ -66,6 +65,8 @@ class RandomHorizontalShift(Layer):
                 "random_zoom",
                 "random_brightness",
                 "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Ratio:{ratio}, Number of Outputs: {number_of_outputs}",
         )
@@ -106,6 +107,7 @@ class RandomHorizontalShift(Layer):
 
         h, w = img.shape[:2]
         to_shift = w * ratio
+
         if ratio > 0:
             img = img[:, : int(w - to_shift), :]
         if ratio < 0:

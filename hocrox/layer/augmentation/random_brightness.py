@@ -7,7 +7,7 @@ from hocrox.utils import Layer
 
 
 class RandomBrightness(Layer):
-    """RandomBrightness layer randomly zooms the image.
+    """RandomBrightness layer randomly changes the brightness of the image based on the provided low and high.
 
     Here is an example code to use the RandomBrightness layer in a model.
 
@@ -71,6 +71,8 @@ class RandomBrightness(Layer):
                 "random_zoom",
                 "random_brightness",
                 "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Low: {low}, High:{high}, Number of Outputs: {number_of_outputs}",
         )

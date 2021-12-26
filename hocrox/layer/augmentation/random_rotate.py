@@ -96,6 +96,8 @@ class RandomRotate(Layer):
                 "random_zoom",
                 "random_brightness",
                 "random_channel_shift",
+                "random_horizontal_shift",
+                "random_vertical_shift",
             ],
             f"Number of Outputs: {number_of_outputs}",
         )
