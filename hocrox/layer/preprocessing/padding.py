@@ -5,7 +5,7 @@ from hocrox.utils import Layer
 
 
 class Padding(Layer):
-    """Padding layer add a padding to an image.
+    """Padding layer adds padding to an image.
 
     Here is an example code to use the Padding layer in a model.
 

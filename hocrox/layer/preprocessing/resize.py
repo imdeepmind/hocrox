@@ -5,7 +5,7 @@ from hocrox.utils import Layer
 
 
 class Resize(Layer):
-    """Resize layer resize an image to specific dimension.
+    """Resize layer resize an image to a specific dimension.
 
     Here is an example code to use the Resize layer in a model.
 

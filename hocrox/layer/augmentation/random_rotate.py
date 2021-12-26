@@ -9,7 +9,7 @@ from hocrox.utils import Layer
 class RandomRotate(Layer):
     """RandomRotate layer randomly rotates an image to a certain angle.
 
-    Here is an example code to use RandomRotate layer in a model.
+    Here is an example code to use the RandomRotate layer in a model.
 
     ```python
     from hocrox.model import Model
@@ -52,7 +52,7 @@ class RandomRotate(Layer):
             start_angle (float): Start of the range of angle
             end_angle (float): End of the range of angle
             probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
-                on 50% of images. Defaults to 1.0.
+                on 50% of the images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.

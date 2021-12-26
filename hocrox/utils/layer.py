@@ -47,7 +47,7 @@ class Layer:
                 f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
             )
 
-        # This method below receives a list of images and name of the image, transforms the images, and finally
+        # This method below receives a list of images and the name of the image, transforms the images, and finally
         # returns the transformed image
         def _apply_layer(self, images, name=None):
             transformed_images = []

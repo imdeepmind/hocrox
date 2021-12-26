@@ -1,4 +1,4 @@
-"""Layers are the fundamental blocks of Hocrox image preprocessing and augmentation library.
+"""Layers are the fundamental blocks of Hocrox.
 
 In Hocrox, each layer basically a function that will be performed on the images to preprocess or augment the image.
 
