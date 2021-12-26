@@ -45,12 +45,14 @@ class RandomRotate(Layer):
 
         return result
 
-    def __init__(self, start_angle, end_angle, number_of_outputs=1, name=None):
+    def __init__(self, start_angle, end_angle, probability=1.0, number_of_outputs=1, name=None):
         """Init method for the RandomRotate layer.
 
         Args:
             start_angle (float): Start of the range of angle
             end_angle (float): End of the range of angle
+            probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
+                on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -70,11 +72,15 @@ class RandomRotate(Layer):
         if start_angle > end_angle:
             raise ValueError(f"The value {start_angle} for the argument start_angle is not valid")
 
+        if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
+            raise ValueError(f"The value {probability} for the argument probability is not valid")
+
         if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
         self.__start_angle = start_angle
         self.__end_angle = end_angle
+        self.__probability = probability
         self.__number_of_outputs = number_of_outputs
 
         super().__init__(
@@ -99,7 +105,7 @@ class RandomRotate(Layer):
                 "random_horizontal_shift",
                 "random_vertical_shift",
             ],
-            f"Number of Outputs: {number_of_outputs}",
+            f"Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
     def _apply_layer(self, images, name=None):
@@ -117,6 +123,8 @@ class RandomRotate(Layer):
         for image in images:
             for _ in range(self.__number_of_outputs):
                 angle = random.uniform(self.__start_angle, self.__end_angle)
-                transformed_images.append(self.__rotate_image(image, angle))
+                should_perform = self._get_probability(self.__probability)
+
+                transformed_images.append(self.__rotate_image(image, angle) if should_perform else image)
 
         return transformed_images

@@ -27,10 +27,12 @@ class RandomFlip(Layer):
     ```
     """
 
-    def __init__(self, number_of_outputs=1, name=None):
+    def __init__(self, probability=1.0, number_of_outputs=1, name=None):
         """Init method for the RandomFlip layer.
 
         Args:
+            probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
+                on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -38,6 +40,9 @@ class RandomFlip(Layer):
         Raises:
             ValueError: If the number_of_images parameter is not valid
         """
+        if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
+            raise ValueError(f"The value {probability} for the argument probability is not valid")
+
         if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
             raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
 
@@ -63,10 +68,11 @@ class RandomFlip(Layer):
                 "random_horizontal_shift",
                 "random_vertical_shift",
             ],
-            f"Number of Outputs: {number_of_outputs}",
+            f"Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
         self.__number_of_outputs = number_of_outputs
+        self.__probability = probability
 
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -83,6 +89,8 @@ class RandomFlip(Layer):
         for image in images:
             for _ in range(self.__number_of_outputs):
                 flip = random.randint(0, 1)
-                transformed_images.append(cv2.flip(image, flip))
+                should_perform = self._get_probability(self.__probability)
+
+                transformed_images.append(cv2.flip(image, flip) if should_perform else image)
 
         return transformed_images
