@@ -27,12 +27,14 @@ class RandomZoom(Layer):
     ```
     """
 
-    def __init__(self, start=0.0, end=1.0, number_of_outputs=1, name=None):
+    def __init__(self, start=0.0, end=1.0, probability=1.0, number_of_outputs=1, name=None):
         """Init method for the RandomZoom layer.
 
         Args:
             start (float, optional): Starting range of the zoom, the value should be between 0 and 1. Defaults to 0.
             end (float, optional): Ending range of the zoom, the value should be between 0 and 1. Defaults to 1.
+            probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
+                on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -73,12 +75,13 @@ class RandomZoom(Layer):
                 "random_horizontal_shift",
                 "random_vertical_shift",
             ],
-            f"Start: {start}, end:{end}, Number of Outputs: {number_of_outputs}",
+            f"Start: {start}, end:{end}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
         self.__number_of_outputs = number_of_outputs
         self.__start = start
         self.__end = end
+        self.__probability = probability
 
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -94,7 +97,9 @@ class RandomZoom(Layer):
 
         for image in images:
             for _ in range(self.__number_of_outputs):
-                transformed_images.append(self.__zoom(image, self.__start, self.__end))
+                should_perform = self._get_probability(self.__probability)
+
+                transformed_images.append(self.__zoom(image, self.__start, self.__end) if should_perform else image)
 
         return transformed_images
 

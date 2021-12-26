@@ -1,4 +1,5 @@
 """Layer class is used to make layers for Hocrox."""
+import random
 
 
 class Layer:
@@ -136,3 +137,18 @@ class Layer:
             str: Type of the layer
         """
         return self.__type
+
+    @staticmethod
+    def _get_probability(rate):
+        """Based on the probability rate, it determines whether to return True or False.
+
+        Args:
+            rate (float): Rate of the probability
+
+        Returns:
+            bool: True or False based on the probability rate.
+        """
+        rate *= 100
+        number = random.uniform(0, 101)
+
+        return number <= rate
