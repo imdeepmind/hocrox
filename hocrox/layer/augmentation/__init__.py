@@ -14,3 +14,4 @@ from .random_flip import RandomFlip
 from .random_zoom import RandomZoom
 from .random_brightness import RandomBrightness
 from .random_channel_shift import RandomChannelShift
+from .random_horizontal_shift import RandomHorizontalShift
