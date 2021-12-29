@@ -1,19 +1,18 @@
-"""RandomBrightness layer for Hocrox."""
-import cv2
+"""RandomChannelShift layer for Hocrox."""
 import random
 import numpy as np
 
 from hocrox.utils import Layer
 
 
-class RandomBrightness(Layer):
-    """RandomBrightness layer randomly changes the brightness of the image based on the provided low and high.
+class RandomChannelShift(Layer):
+    """RandomChannelShift layer randomly adds some value to the channels in the image.
 
-    Here is an example code to use the RandomBrightness layer in a model.
+    Here is an example code to use the RandomChannelShift layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomBrightness
+    from hocrox.layer.augmentation import RandomChannelShift
     from hocrox.layer import Read
 
     # Initializing the model
@@ -21,19 +20,19 @@ class RandomBrightness(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomBrightness(low=0.5, high=3.0, number_of_outputs=1))
+    model.add(RandomChannelShift(low=1, high=5, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
     ```
     """
 
-    def __init__(self, low=0.5, high=3.0, probability=1.0, number_of_outputs=1, name=None):
-        """Init method for the RandomBrightness layer.
+    def __init__(self, low=1, high=5, probability=1.0, number_of_outputs=1, name=None):
+        """Init method for the RandomChannelShift layer.
 
         Args:
-            low (float, optional): Starting range of the brightness. Defaults to 0.5.
-            end (float, optional): Ending range of the brightness. Defaults to 3.0.
+            low (int, optional): Starting range of the brightness. Defaults to 0.5.
+            end (int, optional): Ending range of the brightness. Defaults to 3.0.
             probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
                 on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
@@ -45,10 +44,10 @@ class RandomBrightness(Layer):
             ValueError: If the high parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
-        if not (isinstance(low, float)):
+        if not (isinstance(low, int)):
             raise ValueError(f"The value {low} for the argument low is not valid")
 
-        if not (isinstance(high, float)):
+        if not (isinstance(high, int)):
             raise ValueError(f"The value {high} for the argument high is not valid")
 
         if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
@@ -59,26 +58,8 @@ class RandomBrightness(Layer):
 
         super().__init__(
             name,
-            "random_brightness",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-            ],
+            "random_channel_shift",
+            self.STANDARD_SUPPORTED_LAYERS,
             f"Low: {low}, High:{high}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
@@ -104,14 +85,14 @@ class RandomBrightness(Layer):
                 should_perform = self._get_probability(self.__probability)
 
                 transformed_images.append(
-                    self.__brightness(image, self.__low, self.__high) if should_perform else image
+                    self.__channel_shift(image, self.__low, self.__high) if should_perform else image
                 )
 
         return transformed_images
 
     @staticmethod
-    def __brightness(img, low, high):
-        """Apply brightness function to the image.
+    def __channel_shift(img, low, high):
+        """Apply channel_shift function to the image.
 
         Args:
             img (ndarray): Image to change the brightness
@@ -123,15 +104,10 @@ class RandomBrightness(Layer):
         """
         value = random.uniform(low, high)
 
-        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        hsv = np.array(hsv, dtype=np.float64)
+        img = img + value
+        img[:, :, :][img[:, :, :] > 255] = 255
+        img[:, :, :][img[:, :, :] < 0] = 0
 
-        hsv[:, :, 1] = hsv[:, :, 1] * value
-        hsv[:, :, 1][hsv[:, :, 1] > 255] = 255
-        hsv[:, :, 2] = hsv[:, :, 2] * value
-        hsv[:, :, 2][hsv[:, :, 2] > 255] = 255
-
-        hsv = np.array(hsv, dtype=np.uint8)
-        img = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+        img = img.astype(np.uint8)
 
         return img

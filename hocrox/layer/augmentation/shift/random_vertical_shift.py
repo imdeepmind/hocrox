@@ -1,18 +1,18 @@
-"""RandomHorizontalShift layer for Hocrox."""
+"""RandomVerticalShift layer for Hocrox."""
 import random
 import cv2
 
 from hocrox.utils import Layer
 
 
-class RandomHorizontalShift(Layer):
-    """RandomHorizontalShift layer randomly shifts the image horizontally.
+class RandomVerticalShift(Layer):
+    """RandomVerticalShift layer randomly shifts the image vertically.
 
-    Here is an example code to use the RandomHorizontalShift layer in a model.
+    Here is an example code to use the RandomVerticalShift layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomHorizontalShift
+    from hocrox.layer.augmentation import RandomVerticalShift
     from hocrox.layer import Read
 
     # Initializing the model
@@ -20,7 +20,7 @@ class RandomHorizontalShift(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomHorizontalShift(ratio=0.7, number_of_outputs=1))
+    model.add(RandomVerticalShift(ratio=0.7, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -28,7 +28,7 @@ class RandomHorizontalShift(Layer):
     """
 
     def __init__(self, ratio=0.7, probability=1.0, number_of_outputs=1, name=None):
-        """Init method for the RandomHorizontalShift layer.
+        """Init method for the RandomVerticalShift layer.
 
         Args:
             ratio (float, optional): Ratio is used to define the range of the shift. Defaults to 0.7.
@@ -39,7 +39,7 @@ class RandomHorizontalShift(Layer):
                 the layer. Defaults to None.
 
         Raises:
-            ratioError: If the ratio parameter is not valid
+            ValueError: If the ratio parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(ratio, float)):
@@ -53,26 +53,8 @@ class RandomHorizontalShift(Layer):
 
         super().__init__(
             name,
-            "random_horizontal_shift",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-            ],
+            "random_vertical_shift",
+            self.STANDARD_SUPPORTED_LAYERS,
             f"Ratio:{ratio}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
@@ -96,12 +78,12 @@ class RandomHorizontalShift(Layer):
             for _ in range(self.__number_of_outputs):
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(self.__horizontal_shift(image, self.__ratio) if should_perform else image)
+                transformed_images.append(self.__vertical_shift(image, self.__ratio) if should_perform else image)
 
         return transformed_images
 
     @staticmethod
-    def __horizontal_shift(img, ratio):
+    def __vertical_shift(img, ratio):
         """Apply horizontal_shift function to the image.
 
         Args:
@@ -114,13 +96,13 @@ class RandomHorizontalShift(Layer):
         ratio = random.uniform(-ratio, ratio)
 
         h, w = img.shape[:2]
-        to_shift = w * ratio
+        to_shift = h * ratio
 
         if ratio > 0:
-            img = img[:, : int(w - to_shift), :]
+            img = img[: int(h - to_shift), :, :]
         if ratio < 0:
-            img = img[:, int(-1 * to_shift) :, :]
+            img = img[int(-1 * to_shift) :, :, :]
 
-        img = img = cv2.resize(img, (h, w), cv2.INTER_CUBIC)
+        img = img = cv2.resize(img, (w, h), cv2.INTER_CUBIC)
 
         return img
