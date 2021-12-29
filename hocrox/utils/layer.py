@@ -32,18 +32,7 @@ class Layer:
             super().__init__(
                 name,
                 "crop",
-                [
-                    "resize",
-                    "greyscale",
-                    "rotate",
-                    "crop",
-                    "padding",
-                    "save",
-                    "horizontal_flip",
-                    "vertical_flip",
-                    "random_rotate",
-                    "random_flip",
-                ],
+                self.STANDARD_SUPPORTED_LAYERS,
                 f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
             )
 
@@ -61,6 +50,7 @@ class Layer:
 
     """List of standard layers supported by most of the layers."""
     STANDARD_SUPPORTED_LAYERS = [
+        # Preprocessing layers
         "resize",
         "greyscale",
         "rotate",
@@ -73,6 +63,7 @@ class Layer:
         "random_flip",
         "read",
         "rescale",
+        # Augmentation layers
         "random_zoom",
         "random_brightness",
         "random_channel_shift",

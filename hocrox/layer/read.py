@@ -44,7 +44,7 @@ class Read(Layer):
         super().__init__(
             name,
             "read",
-            [],
+            [],  # Read layer does not support any parent layers
             f"Path: {self.__path}",
         )
 
