@@ -46,26 +46,7 @@ class AverageBlur(Layer):
         super().__init__(
             name,
             "average_blur",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-                "average_blur",
-            ],
+            self.STANDARD_SUPPORTED_LAYERS,
             f"Kernel Size: {self.__kernel_size}",
         )
 

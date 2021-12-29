@@ -63,6 +63,7 @@ class Layer:
         "random_flip",
         "read",
         "rescale",
+        "average_blur",
         # Augmentation layers
         "random_zoom",
         "random_brightness",
