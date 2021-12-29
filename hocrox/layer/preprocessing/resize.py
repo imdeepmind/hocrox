@@ -79,6 +79,7 @@ class Resize(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"Dim: {self.__dim}, Interpolation: {self.__interpolation}",
         )

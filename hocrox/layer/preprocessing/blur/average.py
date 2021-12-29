@@ -1,18 +1,17 @@
-"""RandomFlip layer for Hocrox."""
+"""AverageBlur layer for Hocrox."""
 import cv2
-import random
 
 from hocrox.utils import Layer
 
 
-class RandomFlip(Layer):
-    """RandomFlip layer randomly flips the image vertically or horizontally.
+class AverageBlur(Layer):
+    """AverageBlur layer blur (image smoothing) an image.
 
-    Here is an example code to use the RandomFlip layer in a model.
+    Here is an example code to use the AverageBlur layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomFlip
+    from hocrox.layer.preprocessing import AverageBlur
     from hocrox.layer import Read
 
     # Initializing the model
@@ -20,35 +19,33 @@ class RandomFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomFlip(number_of_outputs=1))
+    model.add(AverageBlur(kernel_size=(5,5)))
 
     # Printing the summary of the model
     print(model.summary())
     ```
     """
 
-    def __init__(self, probability=1.0, number_of_outputs=1, name=None):
-        """Init method for the RandomFlip layer.
+    def __init__(self, kernel_size, name=None):
+        """Init method for Resize layer.
 
         Args:
-            probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
-                on 50% of images. Defaults to 1.0.
-            number_of_outputs (int, optional): Number of images to output. Defaults to 1.
+            kernel_size (tuple): Kernel size for the filter
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
         Raises:
-            ValueError: If the number_of_images parameter is not valid
+            ValueError: If the kernel_size parameter is not valid
+            ValueError: If the interpolation parameter is not valid
         """
-        if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
-            raise ValueError(f"The value {probability} for the argument probability is not valid")
+        if not isinstance(kernel_size, tuple):
+            raise ValueError(f"The value {kernel_size} for the argument kernel_size is not valid")
 
-        if not isinstance(number_of_outputs, int) or number_of_outputs < 1:
-            raise ValueError(f"The value {number_of_outputs} for the argument number_of_outputs is not valid")
+        self.__kernel_size = kernel_size
 
         super().__init__(
             name,
-            "random_flip",
+            "average_blur",
             [
                 "resize",
                 "greyscale",
@@ -69,11 +66,8 @@ class RandomFlip(Layer):
                 "random_vertical_shift",
                 "average_blur",
             ],
-            f"Probability: {probability}, Number of Outputs: {number_of_outputs}",
+            f"Kernel Size: {self.__kernel_size}",
         )
-
-        self.__number_of_outputs = number_of_outputs
-        self.__probability = probability
 
     def _apply_layer(self, images, name=None):
         """Apply the transformation method to change the layer.
@@ -88,10 +82,6 @@ class RandomFlip(Layer):
         transformed_images = []
 
         for image in images:
-            for _ in range(self.__number_of_outputs):
-                flip = random.randint(0, 1)
-                should_perform = self._get_probability(self.__probability)
-
-                transformed_images.append(cv2.flip(image, flip) if should_perform else image)
+            transformed_images.append(cv2.blur(image, self.__kernel_size))
 
         return transformed_images

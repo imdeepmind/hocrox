@@ -70,6 +70,7 @@ class Save(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"Path: {self.__path}, Format: {self.__format}",
         )

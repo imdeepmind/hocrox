@@ -61,6 +61,7 @@ class Resscale(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"Rescale: {self.__rescale}",
         )

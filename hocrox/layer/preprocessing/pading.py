@@ -87,6 +87,7 @@ class Padding(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"Top: {self.__top}, Bottom: {self.__bottom}, Left: {self.__left}, Right: {self.__right}",
         )

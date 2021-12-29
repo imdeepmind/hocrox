@@ -72,6 +72,7 @@ class RandomVerticalShift(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"Ratio:{ratio}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )

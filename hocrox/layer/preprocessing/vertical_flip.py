@@ -55,6 +55,7 @@ class VerticalFlip(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             "-",
         )

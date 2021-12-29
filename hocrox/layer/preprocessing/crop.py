@@ -79,6 +79,7 @@ class Crop(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
         )

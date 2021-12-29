@@ -77,6 +77,7 @@ class RandomZoom(Layer):
                 "random_channel_shift",
                 "random_horizontal_shift",
                 "random_vertical_shift",
+                "average_blur",
             ],
             f"Start: {start}, end:{end}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
