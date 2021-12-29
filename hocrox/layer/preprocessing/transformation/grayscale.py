@@ -1,17 +1,17 @@
-"""HorizontalFlip layer for Hocrox."""
+"""Grayscale layer for Hocrox."""
 import cv2
 
 from hocrox.utils import Layer
 
 
-class HorizontalFlip(Layer):
-    """HorizontalFlip layer horizontally flips an image.
+class Grayscale(Layer):
+    """Grayscale layer grayscaled an image.
 
     Here is an example code to use the Crop layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import HorizontalFlip
+    from hocrox.layer.preprocessing import Grayscale
     from hocrox.layer import Read
 
     # Initializing the model
@@ -19,7 +19,7 @@ class HorizontalFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(HorizontalFlip())
+    model.add(Grayscale())
 
     # Printing the summary of the model
     print(model.summary())
@@ -27,7 +27,7 @@ class HorizontalFlip(Layer):
     """
 
     def __init__(self, name=None):
-        """Init method for horizontal flip layer.
+        """Init method for grayscale layer.
 
         Args:
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
@@ -36,27 +36,8 @@ class HorizontalFlip(Layer):
         """
         super().__init__(
             name,
-            "horizontal_flip",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-                "average_blur",
-            ],
+            "greyscale",
+            self.STANDARD_SUPPORTED_LAYERS,
             "-",
         )
 
@@ -73,6 +54,6 @@ class HorizontalFlip(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(cv2.flip(image, 1))
+            transformed_images.append(cv2.cvtColor(image, cv2.COLOR_BGR2GRAY))
 
         return transformed_images
