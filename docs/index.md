@@ -55,11 +55,11 @@ from hocrox.layer import Read, Save
 model = Model()
 
 # Adding model layers
-model.add(Read(path="./img"))
+model.add(Read(path="./image_to_preprocess"))
 model.add(Resize((100, 100), name="Resize Layer"))
 model.add(Grayscale(name="Grayscale Layer"))
 model.add(Padding(10, 20, 70, 40, [255, 255, 255], name="Padding Layer"))
-model.add(Save("img2/", name="Save image"))
+model.add(Save("preprocessed_images/", format="img", name="Save image"))
 
 # Printing the summary of the model
 print(model.summary())
