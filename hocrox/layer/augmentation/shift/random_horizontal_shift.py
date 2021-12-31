@@ -78,7 +78,11 @@ class RandomHorizontalShift(Layer):
             for _ in range(self.__number_of_outputs):
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(self.__horizontal_shift(image, self.__ratio) if should_perform else image)
+                if image is not None and len(image) != 0:
+                    transformed_image = self.__horizontal_shift(image, self.__ratio) if should_perform else image
+
+                    if transformed_image is not None and len(transformed_image) != 0:
+                        transformed_images.append(transformed_image)
 
         return transformed_images
 
@@ -103,6 +107,9 @@ class RandomHorizontalShift(Layer):
         if ratio < 0:
             img = img[:, int(-1 * to_shift) :, :]
 
-        img = img = cv2.resize(img, (h, w), cv2.INTER_CUBIC)
+        if img is None or len(img) == 0:
+            return img
+
+        img = cv2.resize(img, (h, w), cv2.INTER_CUBIC)
 
         return img

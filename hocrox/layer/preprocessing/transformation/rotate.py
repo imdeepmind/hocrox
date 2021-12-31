@@ -79,6 +79,10 @@ class Rotate(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(self.__rotate_image(image, self.__angle))
+            if image is not None and len(image) != 0:
+                transformed_image = self.__rotate_image(image, self.__angle)
+
+                if transformed_image is not None and len(transformed_image) != 0:
+                    transformed_images.append(transformed_image)
 
         return transformed_images

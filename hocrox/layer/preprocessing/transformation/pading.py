@@ -86,10 +86,12 @@ class Padding(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(
-                cv2.copyMakeBorder(
+            if image is not None and len(image) != 0:
+                transformed_image = cv2.copyMakeBorder(
                     image, self.__top, self.__bottom, self.__left, self.__right, cv2.BORDER_CONSTANT, value=self.__color
                 )
-            )
+
+                if transformed_image is not None and len(transformed_image) != 0:
+                    transformed_images.append(transformed_image)
 
         return transformed_images

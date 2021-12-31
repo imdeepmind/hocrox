@@ -73,6 +73,10 @@ class RandomFlip(Layer):
                 flip = random.randint(0, 1)
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(cv2.flip(image, flip) if should_perform else image)
+                if image is not None and len(image) != 0:
+                    transformed_image = cv2.flip(image, flip) if should_perform else image
+
+                    if transformed_image is not None and len(transformed_image) != 0:
+                        transformed_images.append(transformed_image)
 
         return transformed_images

@@ -84,7 +84,11 @@ class RandomZoom(Layer):
             for _ in range(self.__number_of_outputs):
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(self.__zoom(image, self.__start, self.__end) if should_perform else image)
+                if image is not None and len(image) != 0:
+                    transformed_image = self.__zoom(image, self.__start, self.__end) if should_perform else image
+
+                    if transformed_image is not None and len(transformed_image) != 0:
+                        transformed_images.append(transformed_image)
 
         return transformed_images
 
@@ -111,6 +115,10 @@ class RandomZoom(Layer):
         w_start = random.randint(0, w - w_taken)
 
         img = img[h_start : h_start + h_taken, w_start : w_start + w_taken, :]
-        img = img = cv2.resize(img, (w, h), cv2.INTER_CUBIC)
+
+        if img is None or len(img) == 0:
+            return img
+
+        img = cv2.resize(img, (w, h), cv2.INTER_CUBIC)
 
         return img

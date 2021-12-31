@@ -60,6 +60,10 @@ class Rescale(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(image * self.__rescale)
+            if image is not None and len(image) != 0:
+                transformed_image = image * self.__rescale
+
+                if transformed_image is not None and len(transformed_image) != 0:
+                    transformed_images.append(transformed_image)
 
         return transformed_images
