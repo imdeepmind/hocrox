@@ -85,9 +85,11 @@ class RandomBrightness(Layer):
             for _ in range(self.__number_of_outputs):
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(
-                    self.__brightness(image, self.__low, self.__high) if should_perform else image
-                )
+                if image is not None and len(image) != 0:
+                    transformed_image = self.__brightness(image, self.__low, self.__high) if should_perform else image
+
+                    if transformed_image is not None and len(transformed_image) != 0:
+                        transformed_images.append(transformed_image)
 
         return transformed_images
 
@@ -114,6 +116,7 @@ class RandomBrightness(Layer):
         hsv[:, :, 2][hsv[:, :, 2] > 255] = 255
 
         hsv = np.array(hsv, dtype=np.uint8)
+
         img = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
 
         return img

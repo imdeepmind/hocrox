@@ -67,12 +67,13 @@ class Save(Layer):
             list[ndarray]: Return the transform images
         """
         for index, image in enumerate(images):
-            layer_name = self._get_name()
-            filename = f"{layer_name}_{index}_{name}"
+            if image is not None and len(image) != 0:
+                layer_name = self._get_name()
+                filename = f"{layer_name}_{index}_{name}"
 
-            if self.__format == "npy":
-                np.save(os.path.join(self.__path, filename + ".npy"), image)
-            else:
-                cv2.imwrite(os.path.join(self.__path, filename), image)
+                if self.__format == "npy":
+                    np.save(os.path.join(self.__path, filename + ".npy"), image)
+                else:
+                    cv2.imwrite(os.path.join(self.__path, filename), image)
 
         return images

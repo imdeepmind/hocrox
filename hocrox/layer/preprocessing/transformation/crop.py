@@ -78,6 +78,10 @@ class Crop(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(image[self.__x : self.__x + self.__w, self.__y : self.__y + self.__h])
+            if image is not None and len(image) != 0:
+                transformed_image = image[self.__x : self.__x + self.__w, self.__y : self.__y + self.__h]
+
+                if transformed_image is not None and len(transformed_image) != 0:
+                    transformed_images.append(transformed_image)
 
         return transformed_images
