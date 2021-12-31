@@ -71,6 +71,7 @@ class Layer:
         "random_horizontal_shift",
         "random_vertical_shift",
         "gaussian_blur",
+        "median_blur",
     ]
 
     def __init__(self, name, type, supported_parent_layer, parameter_str, bypass_validation=False):
