@@ -57,7 +57,7 @@ Here is one simple pipeline for preprocessing images.
 
 ```python
 from hocrox.model import Model
-from hocrox.layer.preprocessing import Resize, Grayscale, Padding
+from hocrox.layer.preprocessing.transformation import Grayscale, Resize, Padding
 from hocrox.layer import Read, Save
 
 # Initializing the model

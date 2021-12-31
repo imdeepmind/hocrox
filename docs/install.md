@@ -10,7 +10,7 @@ authors:
 To install Hocrox, run the following command.
 
 ```
-pip install hocrox
+pip install Hocrox
 ```
 
 > Please note that Hocrox uses OpenCV internally so install it before.

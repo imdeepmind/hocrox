@@ -26,8 +26,9 @@ Here we make a simple model with some basic preprocessing and augmentation layer
 ```python
 from hocrox.model import Model
 
-from hocrox.layer.preprocessing import Resize, Grayscale
-from hocrox.layer.augmentation import RandomRotate, RandomFlip
+from hocrox.layer.preprocessing.transformation import Grayscale, Resize
+from hocrox.layer.augmentation.flip import RandomFlip
+from hocrox.layer.augmentation.transformation import RandomRotate
 from hocrox.layer import Read, Save
 ```
 
@@ -43,8 +44,8 @@ model = Model()
 model.add(Read(path="./img"))
 model.add(Resize((224, 224)))
 model.add(Grayscale())
-model.add(RandomFlip(number_of_outputs=2))
-model.add(RandomRotate(start_angle=-10, end_angle=10, number_of_outputs=5))
+model.add(RandomFlip(probability=1.0, number_of_outputs=2))
+model.add(RandomRotate(probability=1.0, start_angle=-10, end_angle=10, number_of_outputs=5))
 model.add(Save("./processed_images"))
 ```
 
