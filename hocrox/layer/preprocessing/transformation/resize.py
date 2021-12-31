@@ -78,6 +78,11 @@ class Resize(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(cv2.resize(image, self.__dim, self.__interpolation))
+
+            if image is not None and len(image) != 0:
+                transformed_image = cv2.resize(image, self.__dim, self.__interpolation)
+
+                if transformed_image is not None and len(transformed_image) != 0:
+                    transformed_images.append(transformed_image)
 
         return transformed_images

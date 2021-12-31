@@ -107,6 +107,10 @@ class RandomRotate(Layer):
                 angle = random.uniform(self.__start_angle, self.__end_angle)
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(self.__rotate_image(image, angle) if should_perform else image)
+                if image is not None and len(image) != 0:
+                    transformed_image = self.__rotate_image(image, angle) if should_perform else image
+
+                    if transformed_image is not None and len(transformed_image) != 0:
+                        transformed_images.append(transformed_image)
 
         return transformed_images

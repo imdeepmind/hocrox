@@ -71,6 +71,10 @@ class RandomHorizontalFlip(Layer):
             for _ in range(self.__number_of_outputs):
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(cv2.flip(image, 1) if should_perform else image)
+                if image is not None and len(image) != 0:
+                    transformed_image = cv2.flip(image, 1) if should_perform else image
+
+                    if transformed_image is not None and len(transformed_image) != 0:
+                        transformed_images.append(transformed_image)
 
         return transformed_images
