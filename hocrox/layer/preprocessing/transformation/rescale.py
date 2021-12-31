@@ -43,25 +43,7 @@ class Rescale(Layer):
         super().__init__(
             name,
             "rescale",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-            ],
+            self.STANDARD_SUPPORTED_LAYERS,
             f"Rescale: {self.__rescale}",
         )
 

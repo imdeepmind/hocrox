@@ -1,17 +1,17 @@
-"""HorizontalFlip layer for Hocrox."""
+"""AverageBlur layer for Hocrox."""
 import cv2
 
 from hocrox.utils import Layer
 
 
-class HorizontalFlip(Layer):
-    """HorizontalFlip layer horizontally flips an image.
+class AverageBlur(Layer):
+    """AverageBlur layer blur (image smoothing) an image.
 
-    Here is an example code to use the Crop layer in a model.
+    Here is an example code to use the AverageBlur layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import HorizontalFlip
+    from hocrox.layer.preprocessing import AverageBlur
     from hocrox.layer import Read
 
     # Initializing the model
@@ -19,44 +19,35 @@ class HorizontalFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(HorizontalFlip())
+    model.add(AverageBlur(kernel_size=(5,5)))
 
     # Printing the summary of the model
     print(model.summary())
     ```
     """
 
-    def __init__(self, name=None):
-        """Init method for horizontal flip layer.
+    def __init__(self, kernel_size, name=None):
+        """Init method for Resize layer.
 
         Args:
+            kernel_size (tuple): Kernel size for the filter
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
+        Raises:
+            ValueError: If the kernel_size parameter is not valid
+            ValueError: If the interpolation parameter is not valid
         """
+        if not isinstance(kernel_size, tuple):
+            raise ValueError(f"The value {kernel_size} for the argument kernel_size is not valid")
+
+        self.__kernel_size = kernel_size
+
         super().__init__(
             name,
-            "horizontal_flip",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-            ],
-            "-",
+            "average_blur",
+            self.STANDARD_SUPPORTED_LAYERS,
+            f"Kernel Size: {self.__kernel_size}",
         )
 
     def _apply_layer(self, images, name=None):
@@ -72,6 +63,6 @@ class HorizontalFlip(Layer):
         transformed_images = []
 
         for image in images:
-            transformed_images.append(cv2.flip(image, 1))
+            transformed_images.append(cv2.blur(image, self.__kernel_size))
 
         return transformed_images

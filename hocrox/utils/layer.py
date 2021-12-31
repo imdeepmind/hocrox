@@ -32,18 +32,7 @@ class Layer:
             super().__init__(
                 name,
                 "crop",
-                [
-                    "resize",
-                    "greyscale",
-                    "rotate",
-                    "crop",
-                    "padding",
-                    "save",
-                    "horizontal_flip",
-                    "vertical_flip",
-                    "random_rotate",
-                    "random_flip",
-                ],
+                self.STANDARD_SUPPORTED_LAYERS,
                 f"X: {self.__x}, Y: {self.__y}, W: {self.__w}, H: {self.__h}",
             )
 
@@ -59,13 +48,44 @@ class Layer:
     ```
     """
 
+    """List of standard layers supported by most of the layers."""
+    STANDARD_SUPPORTED_LAYERS = [
+        # Preprocessing layers
+        "resize",
+        "greyscale",
+        "rotate",
+        "crop",
+        "padding",
+        "save",
+        "horizontal_flip",
+        "vertical_flip",
+        "read",
+        "rescale",
+        "average_blur",
+        "gaussian_blur",
+        "median_blur",
+        "bilateral_blur",
+        # Augmentation layers
+        "random_rotate",
+        "random_flip",
+        "random_vertical_flip",
+        "random_horizontal_flip",
+        "random_zoom",
+        "random_brightness",
+        "random_channel_shift",
+        "random_horizontal_shift",
+        "random_vertical_shift",
+    ]
+
     def __init__(self, name, type, supported_parent_layer, parameter_str, bypass_validation=False):
         """Init method for Layer class.
 
         Args:
             name (str): Name of the layer.
             type (str): Type of the layer
-            supported_parent_layer (list): List of layers that the current layers support as a parent.
+            supported_parent_layer (list): List of layers that the current layers support as a parent. Layer class has
+                a standard list of layers supported by most of layers. It can be used here. Check the example code
+                for more information.
             parameter_str (str): Parameter string used for model summary generation.
             bypass_validation (bool, optional): Flag to bypass validation flags in model.add() function. Used heavy
                 when making new custom layers. Defaults to False.

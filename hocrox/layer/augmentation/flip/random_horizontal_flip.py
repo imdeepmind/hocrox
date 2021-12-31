@@ -1,18 +1,17 @@
-"""RandomFlip layer for Hocrox."""
+"""RandomHorizontalFlip layer for Hocrox."""
 import cv2
-import random
 
 from hocrox.utils import Layer
 
 
-class RandomFlip(Layer):
-    """RandomFlip layer randomly flips the image vertically or horizontally.
+class RandomHorizontalFlip(Layer):
+    """RandomHorizontalFlip layer randomly flips the image vertically or horizontally.
 
-    Here is an example code to use the RandomFlip layer in a model.
+    Here is an example code to use the RandomHorizontalFlip layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomFlip
+    from hocrox.layer.augmentation import RandomHorizontalFlip
     from hocrox.layer import Read
 
     # Initializing the model
@@ -20,7 +19,7 @@ class RandomFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomFlip(number_of_outputs=1))
+    model.add(RandomHorizontalFlip(number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -28,11 +27,11 @@ class RandomFlip(Layer):
     """
 
     def __init__(self, probability=1.0, number_of_outputs=1, name=None):
-        """Init method for the RandomFlip layer.
+        """Init method for the RandomHorizontalFlip layer.
 
         Args:
             probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
-                on 50% of the images. Defaults to 1.0.
+                on 50% of images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -48,26 +47,8 @@ class RandomFlip(Layer):
 
         super().__init__(
             name,
-            "random_flip",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-            ],
+            "random_horizontal_flip",
+            self.STANDARD_SUPPORTED_LAYERS,
             f"Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
@@ -88,9 +69,8 @@ class RandomFlip(Layer):
 
         for image in images:
             for _ in range(self.__number_of_outputs):
-                flip = random.randint(0, 1)
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(cv2.flip(image, flip) if should_perform else image)
+                transformed_images.append(cv2.flip(image, 1) if should_perform else image)
 
         return transformed_images

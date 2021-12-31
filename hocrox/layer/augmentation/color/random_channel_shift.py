@@ -1,18 +1,18 @@
-"""RandomVerticalShift layer for Hocrox."""
+"""RandomChannelShift layer for Hocrox."""
 import random
-import cv2
+import numpy as np
 
 from hocrox.utils import Layer
 
 
-class RandomVerticalShift(Layer):
-    """RandomVerticalShift layer randomly shifts the image vertically.
+class RandomChannelShift(Layer):
+    """RandomChannelShift layer randomly adds some value to the channels in the image.
 
-    Here is an example code to use the RandomVerticalShift layer in a model.
+    Here is an example code to use the RandomChannelShift layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomVerticalShift
+    from hocrox.layer.augmentation import RandomChannelShift
     from hocrox.layer import Read
 
     # Initializing the model
@@ -20,18 +20,19 @@ class RandomVerticalShift(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomVerticalShift(ratio=0.7, number_of_outputs=1))
+    model.add(RandomChannelShift(low=1, high=5, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
     ```
     """
 
-    def __init__(self, ratio=0.7, probability=1.0, number_of_outputs=1, name=None):
-        """Init method for the RandomVerticalShift layer.
+    def __init__(self, low=1, high=5, probability=1.0, number_of_outputs=1, name=None):
+        """Init method for the RandomChannelShift layer.
 
         Args:
-            ratio (float, optional): Ratio is used to define the range of the shift. Defaults to 0.7.
+            low (int, optional): Starting range of the brightness. Defaults to 0.5.
+            high (int, optional): Ending range of the brightness. Defaults to 3.0.
             probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
                 on 50% of the images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
@@ -39,11 +40,15 @@ class RandomVerticalShift(Layer):
                 the layer. Defaults to None.
 
         Raises:
-            ValueError: If the ratio parameter is not valid
+            ValueError: If the low parameter is not valid
+            ValueError: If the high parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
-        if not (isinstance(ratio, float)):
-            raise ValueError(f"The value {ratio} for the argument ratio is not valid")
+        if not (isinstance(low, int)):
+            raise ValueError(f"The value {low} for the argument low is not valid")
+
+        if not (isinstance(high, int)):
+            raise ValueError(f"The value {high} for the argument high is not valid")
 
         if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:
             raise ValueError(f"The value {probability} for the argument probability is not valid")
@@ -53,31 +58,14 @@ class RandomVerticalShift(Layer):
 
         super().__init__(
             name,
-            "random_vertical_shift",
-            [
-                "resize",
-                "greyscale",
-                "rotate",
-                "crop",
-                "padding",
-                "save",
-                "horizontal_flip",
-                "vertical_flip",
-                "random_rotate",
-                "random_flip",
-                "read",
-                "rescale",
-                "random_zoom",
-                "random_brightness",
-                "random_channel_shift",
-                "random_horizontal_shift",
-                "random_vertical_shift",
-            ],
-            f"Ratio:{ratio}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
+            "random_channel_shift",
+            self.STANDARD_SUPPORTED_LAYERS,
+            f"Low: {low}, High:{high}, Probability: {probability}, Number of Outputs: {number_of_outputs}",
         )
 
         self.__number_of_outputs = number_of_outputs
-        self.__ratio = ratio
+        self.__low = low
+        self.__high = high
         self.__probability = probability
 
     def _apply_layer(self, images, name=None):
@@ -96,31 +84,30 @@ class RandomVerticalShift(Layer):
             for _ in range(self.__number_of_outputs):
                 should_perform = self._get_probability(self.__probability)
 
-                transformed_images.append(self.__vertical_shift(image, self.__ratio) if should_perform else image)
+                transformed_images.append(
+                    self.__channel_shift(image, self.__low, self.__high) if should_perform else image
+                )
 
         return transformed_images
 
     @staticmethod
-    def __vertical_shift(img, ratio):
-        """Apply horizontal_shift function to the image.
+    def __channel_shift(img, low, high):
+        """Apply channel_shift function to the image.
 
         Args:
             img (ndarray): Image to change the brightness
-            ratio (float): High range of the brightness
+            low (float): Low range of the brightness
+            high (float): High range of the brightness
 
         Returns:
             ndarray: Updated image
         """
-        ratio = random.uniform(-ratio, ratio)
+        value = random.uniform(low, high)
 
-        h, w = img.shape[:2]
-        to_shift = h * ratio
+        img = img + value
+        img[:, :, :][img[:, :, :] > 255] = 255
+        img[:, :, :][img[:, :, :] < 0] = 0
 
-        if ratio > 0:
-            img = img[: int(h - to_shift), :, :]
-        if ratio < 0:
-            img = img[int(-1 * to_shift) :, :, :]
-
-        img = img = cv2.resize(img, (w, h), cv2.INTER_CUBIC)
+        img = img.astype(np.uint8)
 
         return img
