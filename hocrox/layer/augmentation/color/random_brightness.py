@@ -21,7 +21,7 @@ class RandomBrightness(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomBrightness(low=0.5, high=3.0, number_of_outputs=1))
+    model.add(RandomBrightness(low=0.5, high=3.0, probability=1.0, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -43,6 +43,7 @@ class RandomBrightness(Layer):
         Raises:
             ValueError: If the low parameter is not valid
             ValueError: If the high parameter is not valid
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(low, float)):

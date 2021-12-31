@@ -20,7 +20,7 @@ class RandomChannelShift(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomChannelShift(low=1, high=5, number_of_outputs=1))
+    model.add(RandomChannelShift(low=1, high=5, probability=1.0, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -42,6 +42,7 @@ class RandomChannelShift(Layer):
         Raises:
             ValueError: If the low parameter is not valid
             ValueError: If the high parameter is not valid
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(low, int)):

@@ -6,7 +6,7 @@ from hocrox.utils import Layer
 
 
 class RandomFlip(Layer):
-    """RandomFlip layer randomly flips the image vertically or horizontally.
+    """RandomFlip layer randomly flips an image vertically or horizontally.
 
     Here is an example code to use the RandomFlip layer in a model.
 
@@ -38,6 +38,7 @@ class RandomFlip(Layer):
                 the layer. Defaults to None.
 
         Raises:
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:

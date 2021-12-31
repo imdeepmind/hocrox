@@ -1,4 +1,4 @@
-"""Flip Augmentation layers for Hocrox."""
+"""Augmentation layers that flips image vertically or horizontally."""
 
 from .random_flip import RandomFlip
 from .random_horizontal_flip import RandomHorizontalFlip

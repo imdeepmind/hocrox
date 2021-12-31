@@ -60,8 +60,8 @@ class RandomRotate(Layer):
         Raises:
             ValueError: If the start_angle parameter is not valid
             ValueError: If the end_angle parameter is not valid
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_outputs parameter is not valid
-            ValueError: If the name parameter is not valid
         """
         if not (isinstance(start_angle, int) or isinstance(start_angle, float)):
             raise ValueError(f"The value {start_angle} for the argument start_angle is not valid")

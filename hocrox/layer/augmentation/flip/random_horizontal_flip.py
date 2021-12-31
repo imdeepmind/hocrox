@@ -5,7 +5,7 @@ from hocrox.utils import Layer
 
 
 class RandomHorizontalFlip(Layer):
-    """RandomHorizontalFlip layer randomly flips the image vertically or horizontally.
+    """RandomHorizontalFlip layer randomly flips an image horizontally.
 
     Here is an example code to use the RandomHorizontalFlip layer in a model.
 
@@ -19,7 +19,7 @@ class RandomHorizontalFlip(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomHorizontalFlip(number_of_outputs=1))
+    model.add(RandomHorizontalFlip(probability=1.0, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -37,6 +37,7 @@ class RandomHorizontalFlip(Layer):
                 the layer. Defaults to None.
 
         Raises:
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not isinstance(probability, float) or probability < 0.0 or probability > 1.0:

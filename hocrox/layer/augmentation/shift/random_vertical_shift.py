@@ -40,6 +40,7 @@ class RandomVerticalShift(Layer):
 
         Raises:
             ValueError: If the ratio parameter is not valid
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(ratio, float)):

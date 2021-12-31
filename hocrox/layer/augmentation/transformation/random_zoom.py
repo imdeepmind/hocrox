@@ -6,7 +6,7 @@ from hocrox.utils import Layer
 
 
 class RandomZoom(Layer):
-    """RandomZoom layer randomly zooms the image based on the defined range.
+    """RandomZoom layer randomly zooms an image based on the defined zoom range.
 
     Here is an example code to use the RandomZoom layer in a model.
 
@@ -43,6 +43,7 @@ class RandomZoom(Layer):
             ValueError: If the start parameter is not valid
             ValueError: If the end parameter is not valid
             ValueError: If the number_of_images parameter is not valid
+            ValueError: If the probability parameter is not valid
         """
         if not (isinstance(start, float) and start >= 0 and start < 1):
             raise ValueError(f"The value {start} for the argument start is not valid")

@@ -6,7 +6,7 @@ from hocrox.utils import Layer
 
 
 class RandomHorizontalShift(Layer):
-    """RandomHorizontalShift layer randomly shifts the image horizontally.
+    """RandomHorizontalShift layer randomly shifts an image horizontally.
 
     Here is an example code to use the RandomHorizontalShift layer in a model.
 
@@ -20,7 +20,7 @@ class RandomHorizontalShift(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomHorizontalShift(ratio=0.7, number_of_outputs=1))
+    model.add(RandomHorizontalShift(ratio=0.7, probability=1.0, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -40,6 +40,7 @@ class RandomHorizontalShift(Layer):
 
         Raises:
             ValueError: If the ratio parameter is not valid
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(ratio, float)):
