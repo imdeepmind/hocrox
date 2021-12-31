@@ -59,20 +59,22 @@ class Layer:
         "save",
         "horizontal_flip",
         "vertical_flip",
-        "random_rotate",
-        "random_flip",
         "read",
         "rescale",
         "average_blur",
+        "gaussian_blur",
+        "median_blur",
+        "bilateral_blur",
         # Augmentation layers
+        "random_rotate",
+        "random_flip",
+        "random_vertical_flip",
+        "random_horizontal_flip",
         "random_zoom",
         "random_brightness",
         "random_channel_shift",
         "random_horizontal_shift",
         "random_vertical_shift",
-        "gaussian_blur",
-        "median_blur",
-        "bilateral_blur",
     ]
 
     def __init__(self, name, type, supported_parent_layer, parameter_str, bypass_validation=False):
