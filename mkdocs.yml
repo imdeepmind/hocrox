@@ -13,6 +13,10 @@ nav:
   - Home: "index.md"
   - "install.md"
   - "get-started.md"
+  - Docs:
+      - Layers: "docs/layers.md"
+      - Models: "docs/models.md"
+      - Utils: "docs/utils.md"
   - "blogs.md"
   - "contributors.md"
 site_url: https://hocrox.imdeepmind.com/

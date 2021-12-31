@@ -1,5 +1,5 @@
 ---
-title: Install
+title: Install | Hocrox
 description: Learn how to install Hocrox library on your system.
 authors:
   - Abhishek Chatterjee
