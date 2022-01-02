@@ -57,24 +57,37 @@ Here is one simple pipeline for preprocessing images.
 
 ```python
 from hocrox.model import Model
-from hocrox.layer.preprocessing.transformation import Grayscale, Resize, Padding
 from hocrox.layer import Read, Save
+from hocrox.layer.preprocessing.transformation import Resize
+from hocrox.layer.augmentation.flip import RandomFlip
+from hocrox.layer.augmentation.transformation import RandomRotate
 
-# Initializing the model
+# Initalizing the model
 model = Model()
 
-# Adding model layers
-model.add(Read(path="./images_to_preprocess"))
-model.add(Resize((100, 100), name="Resize Layer"))
-model.add(Grayscale(name="Grayscale Layer"))
-model.add(Padding(10, 20, 70, 40, [255, 255, 255], name="Padding Layer"))
-model.add(Save("preprocessed_images/", format="img", name="Save image"))
+# Reading the images
+model.add(Read(path="./images", name="Read images"))
 
-# Printing the summary of the model
+# Resizing the images
+model.add(Resize((224, 244), interpolation="INTER_LINEAR", name="Resize images"))
+
+# Augmentating the images
+model.add(
+    RandomRotate(
+        start_angle=-10.0, end_angle=10.0, probability=0.7, number_of_outputs=5, name="Randomly rotates the image"
+    )
+)
+model.add(RandomFlip(probability=0.7, name="Randomly flips the image"))
+
+# Saving the images
+model.add(Save("./preprocessed_images", format="npy", name="Save the image"))
+
+# Generating the model summary
 print(model.summary())
 
-# Apply transform to the images
+# Transforming the images
 model.transform()
+
 ```
 
 ## Contributors
