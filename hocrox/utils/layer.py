@@ -65,6 +65,10 @@ class Layer:
         "gaussian_blur",
         "median_blur",
         "bilateral_blur",
+        "brightness",
+        "channel_shift",
+        "horizontal_shift",
+        "vertical_shift",
         # Augmentation layers
         "random_rotate",
         "random_flip",
