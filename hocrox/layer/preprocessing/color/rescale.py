@@ -9,7 +9,7 @@ class Rescale(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Rescale
+    from hocrox.layer.preprocessing.color import Rescale
     from hocrox.layer import Read
 
     # Initializing the model

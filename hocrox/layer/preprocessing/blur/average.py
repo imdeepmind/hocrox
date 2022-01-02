@@ -11,7 +11,7 @@ class AverageBlur(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import AverageBlur
+    from hocrox.layer.preprocessing.blur import AverageBlur
     from hocrox.layer import Read
 
     # Initializing the model

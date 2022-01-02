@@ -1,4 +1,4 @@
-"""Color preprocessing layers for Hocrox."""
+"""Preprocessing layers that manapulats color of images."""
 
 from .brightness import Brightness
 from .channel_shift import ChannelShift

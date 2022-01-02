@@ -12,7 +12,7 @@ class Rotate(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Grayscale
+    from hocrox.layer.preprocessing.transformation import Grayscale
     from hocrox.layer import Hocrox
 
     # Initializing the model

@@ -11,7 +11,7 @@ class HorizontalFlip(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import HorizontalFlip
+    from hocrox.layer.preprocessing.flip import HorizontalFlip
     from hocrox.layer import Read
 
     # Initializing the model

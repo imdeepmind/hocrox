@@ -1,4 +1,4 @@
-"""Transformation preprocessing layers for Hocrox."""
+"""Preprocessing layers that transforms images."""
 
 from .crop import Crop
 from .pading import Padding

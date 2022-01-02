@@ -11,7 +11,7 @@ class ChannelShift(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import ChannelShift
+    from hocrox.layer.augmentation.color import ChannelShift
     from hocrox.layer import Read
 
     # Initializing the model
@@ -75,7 +75,7 @@ class ChannelShift(Layer):
         """Apply channel_shift function to the image.
 
         Args:
-            img (ndarray): Image to change the brightness
+            img (ndarray): Image to make the change
             value (int): Value by which, the channel will be shifted
 
         Returns:

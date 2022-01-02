@@ -11,7 +11,7 @@ class GaussianBlur(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import GaussianBlur
+    from hocrox.layer.preprocessing.blur import GaussianBlur
     from hocrox.layer import Read
 
     # Initializing the model

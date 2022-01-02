@@ -11,7 +11,7 @@ class Padding(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Padding
+    from hocrox.layer.preprocessing.transformation import Padding
     from hocrox.layer import Read
 
     # Initializing the model

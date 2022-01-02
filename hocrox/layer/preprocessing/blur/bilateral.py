@@ -11,7 +11,7 @@ class BilateralBlur(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import BilateralBlur
+    from hocrox.layer.preprocessing.blur import BilateralBlur
     from hocrox.layer import Read
 
     # Initializing the model

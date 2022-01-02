@@ -11,7 +11,7 @@ class Resize(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Resize
+    from hocrox.layer.preprocessing.transformation import Resize
     from hocrox.layer import Read
 
     # Initializing the model

@@ -11,7 +11,7 @@ class MedianBlur(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import MedianBlur
+    from hocrox.layer.preprocessing.blur import MedianBlur
     from hocrox.layer import Read
 
     # Initializing the model
