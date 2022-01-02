@@ -15,6 +15,8 @@ Currently, in Hocrox, there are several supported layers. The complete list is b
     - Color
         - Brightness
         - ChannelShift
+        - Grayscale
+        - Rescale
     - Flip
         - Horizontal Flip
         - Vertical Flip
@@ -23,9 +25,7 @@ Currently, in Hocrox, there are several supported layers. The complete list is b
         - Vertical Shift
     - Transformation
         - Crop
-        - Grayscale
         - Padding
-        - Rescale
         - Resize
         - Rotate
 - Augmentation
