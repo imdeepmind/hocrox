@@ -4,7 +4,7 @@ from hocrox.layer.augmentation.color import RandomBrightness
 
 
 class Brightness(RandomBrightness):
-    """Brightness layer randomly changes the brightness of the image based on the provided low and high.
+    """Brightness layer changes the brightness of the image based on the provided low and high.
 
     Here is an example code to use the Brightness layer in a model.
 
@@ -30,7 +30,7 @@ class Brightness(RandomBrightness):
 
         Args:
             low (float, optional): Starting range of the brightness. Defaults to 0.5.
-            end (float, optional): Ending range of the brightness. Defaults to 3.0.
+            high (float, optional): Ending range of the brightness. Defaults to 3.0.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 

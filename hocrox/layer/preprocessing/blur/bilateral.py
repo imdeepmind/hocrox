@@ -5,7 +5,7 @@ from hocrox.utils import Layer
 
 
 class BilateralBlur(Layer):
-    """BilateralBlur layer blur (image smoothing) an image.
+    """BilateralBlur layer blur (image smoothing) an image using an bilateral filter.
 
     Here is an example code to use the BilateralBlur layer in a model.
 
@@ -19,7 +19,7 @@ class BilateralBlur(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(BilateralBlur(kernel_size=(5,5)))
+    model.add(BilateralBlur(d=9, sigma_color=75, sigma_space=75))
 
     # Printing the summary of the model
     print(model.summary())
@@ -27,7 +27,7 @@ class BilateralBlur(Layer):
     """
 
     def __init__(self, d, sigma_color, sigma_space, name=None):
-        """Init method for Resize layer.
+        """Init method for BilateralBlur layer.
 
         Args:
             d (int): Diameter of each pixel neighborhood that is used during filtering. If it is non-positive,
@@ -43,8 +43,9 @@ class BilateralBlur(Layer):
                 the layer. Defaults to None.
 
         Raises:
-            ValueError: If the kernel_size parameter is not valid
-            ValueError: If the interpolation parameter is not valid
+            ValueError: If the d parameter is not valid
+            ValueError: If the sigma_color parameter is not valid
+            ValueError: If the sigma_space parameter is not valid
         """
         if not isinstance(d, int):
             raise ValueError(f"The value {d} for the argument d is not valid")

@@ -30,7 +30,7 @@ class ChannelShift(RandomChannelShift):
 
         Args:
             low (int, optional): Starting range of the brightness. Defaults to 0.5.
-            end (int, optional): Ending range of the brightness. Defaults to 3.0.
+            high (int, optional): Ending range of the brightness. Defaults to 3.0.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
 
