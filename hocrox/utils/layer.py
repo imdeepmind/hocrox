@@ -67,6 +67,8 @@ class Layer:
         "bilateral_blur",
         "brightness",
         "channel_shift",
+        "horizontal_shift",
+        "vertical_shift",
         # Augmentation layers
         "random_rotate",
         "random_flip",
