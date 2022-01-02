@@ -12,7 +12,7 @@ class RandomHorizontalShift(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomHorizontalShift
+    from hocrox.layer.augmentation.shift import RandomHorizontalShift
     from hocrox.layer import Read
 
     # Initializing the model

@@ -12,7 +12,7 @@ class RandomZoom(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomZoom
+    from hocrox.layer.augmentation.transformation import RandomZoom
     from hocrox.layer import Read
 
     # Initializing the model

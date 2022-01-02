@@ -12,7 +12,7 @@ class RandomVerticalShift(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomVerticalShift
+    from hocrox.layer.augmentation.shift import RandomVerticalShift
     from hocrox.layer import Read
 
     # Initializing the model

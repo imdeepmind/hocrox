@@ -12,7 +12,7 @@ class RandomFlip(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomFlip
+    from hocrox.layer.augmentation.flip import RandomFlip
     from hocrox.layer import Read
 
     # Initializing the model

@@ -13,7 +13,7 @@ class RandomRotate(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomRotate
+    from hocrox.layer.augmentation.transformation import RandomRotate
     from hocrox.layer import Read
 
     # Initializing the model

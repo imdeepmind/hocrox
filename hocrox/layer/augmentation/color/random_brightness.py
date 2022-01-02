@@ -13,7 +13,7 @@ class RandomBrightness(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomBrightness
+    from hocrox.layer.augmentation.color import RandomBrightness
     from hocrox.layer import Read
 
     # Initializing the model
