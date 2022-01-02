@@ -5,13 +5,13 @@ from hocrox.utils import Layer
 
 
 class MedianBlur(Layer):
-    """MedianBlur layer blur (image smoothing) an image.
+    """MedianBlur layer blur (image smoothing) an image using median filter.
 
     Here is an example code to use the MedianBlur layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import MedianBlur
+    from hocrox.layer.preprocessing.blur import MedianBlur
     from hocrox.layer import Read
 
     # Initializing the model
@@ -27,7 +27,7 @@ class MedianBlur(Layer):
     """
 
     def __init__(self, kernel_size, name=None):
-        """Init method for Resize layer.
+        """Init method for MedianBlur layer.
 
         Args:
             kernel_size (int): Aperture linear size; it must be odd and greater than 1, for example: 3, 5, 7.
@@ -36,7 +36,6 @@ class MedianBlur(Layer):
 
         Raises:
             ValueError: If the kernel_size parameter is not valid
-            ValueError: If the interpolation parameter is not valid
         """
         if not isinstance(kernel_size, int) or kernel_size <= 0 or kernel_size % 2 == 0:
             raise ValueError(f"The value {kernel_size} for the argument kernel_size is not valid")

@@ -5,13 +5,13 @@ from hocrox.utils import Layer
 
 
 class GaussianBlur(Layer):
-    """GaussianBlur layer blur (image smoothing) an image.
+    """GaussianBlur layer blur (image smoothing) an image using a gaussian filter.
 
     Here is an example code to use the GaussianBlur layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import GaussianBlur
+    from hocrox.layer.preprocessing.blur import GaussianBlur
     from hocrox.layer import Read
 
     # Initializing the model
@@ -19,7 +19,7 @@ class GaussianBlur(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(GaussianBlur(kernel_size=(5,5)))
+    model.add(GaussianBlur(kernel_size=(5,5), sigma_x=0, sigma_y=0)))
 
     # Printing the summary of the model
     print(model.summary())
@@ -27,7 +27,7 @@ class GaussianBlur(Layer):
     """
 
     def __init__(self, kernel_size, sigma_x, sigma_y=0, name=None):
-        """Init method for Resize layer.
+        """Init method for GaussianBlur layer.
 
         Args:
             kernel_size (tuple): Kernel size for the filter
@@ -40,7 +40,8 @@ class GaussianBlur(Layer):
 
         Raises:
             ValueError: If the kernel_size parameter is not valid
-            ValueError: If the interpolation parameter is not valid
+            ValueError: If the sigma_x parameter is not valid
+            ValueError: If the sigma_y parameter is not valid
         """
         if not isinstance(kernel_size, tuple):
             raise ValueError(f"The value {kernel_size} for the argument kernel_size is not valid")

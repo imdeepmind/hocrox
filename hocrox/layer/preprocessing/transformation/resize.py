@@ -5,13 +5,13 @@ from hocrox.utils import Layer
 
 
 class Resize(Layer):
-    """Resize layer resize an image to specific dimension.
+    """Resize layer resize an image to a specific dimension.
 
     Here is an example code to use the Resize layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Resize
+    from hocrox.layer.preprocessing.transformation import Resize
     from hocrox.layer import Read
 
     # Initializing the model

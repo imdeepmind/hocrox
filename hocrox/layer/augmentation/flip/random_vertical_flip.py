@@ -5,13 +5,13 @@ from hocrox.utils import Layer
 
 
 class RandomVerticalFlip(Layer):
-    """RandomVerticalFlip layer randomly flips the image vertically or horizontally.
+    """RandomVerticalFlip layer randomly flips an image vertically.
 
     Here is an example code to use the RandomVerticalFlip layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomVerticalFlip
+    from hocrox.layer.augmentation.flip import RandomVerticalFlip
     from hocrox.layer import Read
 
     # Initializing the model

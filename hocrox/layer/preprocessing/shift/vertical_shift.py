@@ -11,7 +11,7 @@ class VerticalShift(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import VerticalShift
+    from hocrox.layer.augmentation.shift import VerticalShift
     from hocrox.layer import Read
 
     # Initializing the model
@@ -35,7 +35,7 @@ class VerticalShift(Layer):
                 the layer. Defaults to None.
 
         Raises:
-            ratioError: If the by parameter is not valid
+            ValueError: If the by parameter is not valid
         """
         if not (isinstance(by, float)):
             raise ValueError(f"The value {by} for the argument by is not valid")
@@ -75,8 +75,8 @@ class VerticalShift(Layer):
         """Apply horizontal_shift function to the image.
 
         Args:
-            img (ndarray): Image to change the brightness
-            by (float): High range of the brightness
+            img (ndarray): Image to change the change
+            by (float): Rate of change
 
         Returns:
             ndarray: Updated image

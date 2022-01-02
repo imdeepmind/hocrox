@@ -11,7 +11,7 @@ class Grayscale(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Grayscale
+    from hocrox.layer.preprocessing.color import Grayscale
     from hocrox.layer import Read
 
     # Initializing the model

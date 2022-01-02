@@ -11,10 +11,14 @@ theme:
   name: material
 nav:
   - Home: "index.md"
-  - "install.md"
-  - "get-started.md"
-  - "blogs.md"
-  - "contributors.md"
+  - Install: "install.md"
+  - Get Started: "get-started.md"
+  - Docs:
+      - Layers: "docs/layers.md"
+      - Models: "docs/models.md"
+      - Utils: "docs/utils.md"
+  - Blogs: "blogs.md"
+  - Contributors: "contributors.md"
 site_url: https://hocrox.imdeepmind.com/
 docs_dir: docs
 site_dir: site

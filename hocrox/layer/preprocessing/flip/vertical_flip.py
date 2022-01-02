@@ -11,7 +11,7 @@ class VerticalFlip(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import VerticalFlip
+    from hocrox.layer.preprocessing.flip import VerticalFlip
     from hocrox.layer import Read
 
     # Initializing the model

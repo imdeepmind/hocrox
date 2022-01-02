@@ -1,15 +1,15 @@
-"""Resscale layer for Hocrox."""
+"""Rescale layer for Hocrox."""
 from hocrox.utils import Layer
 
 
-class Resscale(Layer):
-    """Resscale layer rescales an image.
+class Rescale(Layer):
+    """Rescale layer rescales an image.
 
-    Here is an example code to use the Resscale layer in a model.
+    Here is an example code to use the Rescale layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Resscale
+    from hocrox.layer.preprocessing.color import Rescale
     from hocrox.layer import Read
 
     # Initializing the model
@@ -17,7 +17,7 @@ class Resscale(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(Resscale(rescale=1.0 / 255.0))
+    model.add(Rescale(rescale=1.0 / 255.0))
 
     # Printing the summary of the model
     print(model.summary())

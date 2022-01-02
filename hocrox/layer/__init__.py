@@ -1,27 +1,47 @@
-"""Layers are the fundamental blocks of Hocrox image preprocessing and augmentation library.
+"""Layers are the fundamental blocks of Hocrox.
 
 In Hocrox, each layer basically a function that will be performed on the images to preprocess or augment the image.
 
-Currently, in Hocrox, there are several layers. The complete list is below.
+Currently, in Hocrox, there are several supported layers. The complete list is below.
 
 - Save
 - Read
 - Preprocessing
-    - Crop
-    - Grayscale
-    - Horizontal Flip
-    - Padding
-    - Resize
-    - Rotate
-    - Vertical Flip
+    - Blur
+        - AverageBlur
+        - GaussianBlur
+        - MedianBlur
+        - BilateralBlur
+    - Color
+        - Brightness
+        - ChannelShift
+        - Grayscale
+        - Rescale
+    - Flip
+        - Horizontal Flip
+        - Vertical Flip
+    - Shift
+        - Horizontal Shift
+        - Vertical Shift
+    - Transformation
+        - Crop
+        - Padding
+        - Resize
+        - Rotate
 - Augmentation
-    - RandomFlip
-    - RandomRotate
-    - RandomBrightness
-    - RandomChannelShift
-    - RandomHorizontalShift
-    - RandomVerticalShift
-    - RandomZoom
+    - Color
+        - RandomBrightness
+        - RandomChannelShift
+    - Flip
+        - RandomVerticalFlip
+        - RandomHorizontalFlip
+        - RandomFlip
+    - Shift
+        - RandomHorizontalShift
+        - RandomVerticalShift
+    - Transformation
+        - RandomRotate
+        - RandomZoom
 """
 
 from . import preprocessing

@@ -5,13 +5,13 @@ from hocrox.utils import Layer
 
 
 class AverageBlur(Layer):
-    """AverageBlur layer blur (image smoothing) an image.
+    """AverageBlur layer blur (image smoothing) an image using a normalized box filter.
 
     Here is an example code to use the AverageBlur layer in a model.
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import AverageBlur
+    from hocrox.layer.preprocessing.blur import AverageBlur
     from hocrox.layer import Read
 
     # Initializing the model
@@ -27,7 +27,7 @@ class AverageBlur(Layer):
     """
 
     def __init__(self, kernel_size, name=None):
-        """Init method for Resize layer.
+        """Init method for AverageBlur layer.
 
         Args:
             kernel_size (tuple): Kernel size for the filter
@@ -36,7 +36,6 @@ class AverageBlur(Layer):
 
         Raises:
             ValueError: If the kernel_size parameter is not valid
-            ValueError: If the interpolation parameter is not valid
         """
         if not isinstance(kernel_size, tuple):
             raise ValueError(f"The value {kernel_size} for the argument kernel_size is not valid")

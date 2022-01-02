@@ -9,7 +9,7 @@ class Crop(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.preprocessing import Crop
+    from hocrox.layer.preprocessing.transformation import Crop
     from hocrox.layer import Read
 
     # Initializing the model

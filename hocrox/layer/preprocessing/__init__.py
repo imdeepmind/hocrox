@@ -2,3 +2,6 @@
 
 from . import flip
 from . import transformation
+from . import blur
+from . import color
+from . import shift

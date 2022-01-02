@@ -13,7 +13,7 @@ class RandomBrightness(Layer):
 
     ```python
     from hocrox.model import Model
-    from hocrox.layer.augmentation import RandomBrightness
+    from hocrox.layer.augmentation.color import RandomBrightness
     from hocrox.layer import Read
 
     # Initializing the model
@@ -21,7 +21,7 @@ class RandomBrightness(Layer):
 
     # Adding model layers
     model.add(Read(path="./img"))
-    model.add(RandomBrightness(low=0.5, high=3.0, number_of_outputs=1))
+    model.add(RandomBrightness(low=0.5, high=3.0, probability=1.0, number_of_outputs=1))
 
     # Printing the summary of the model
     print(model.summary())
@@ -33,9 +33,9 @@ class RandomBrightness(Layer):
 
         Args:
             low (float, optional): Starting range of the brightness. Defaults to 0.5.
-            end (float, optional): Ending range of the brightness. Defaults to 3.0.
+            high (float, optional): Ending range of the brightness. Defaults to 3.0.
             probability (float, optional): Probability rate for the layer, if the rate of 0.5 then the layer is applied
-                on 50% of images. Defaults to 1.0.
+                on 50% of the images. Defaults to 1.0.
             number_of_outputs (int, optional): Number of images to output. Defaults to 1.
             name (str, optional): Name of the layer, if not provided then automatically generates a unique name for
                 the layer. Defaults to None.
@@ -43,6 +43,7 @@ class RandomBrightness(Layer):
         Raises:
             ValueError: If the low parameter is not valid
             ValueError: If the high parameter is not valid
+            ValueError: If the probability parameter is not valid
             ValueError: If the number_of_images parameter is not valid
         """
         if not (isinstance(low, float)):
