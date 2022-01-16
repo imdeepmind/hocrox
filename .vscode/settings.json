@@ -2,5 +2,6 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 4,
   "python.formatting.provider": "black",
-  "autoDocstring.docstringFormat": "google"
+  "autoDocstring.docstringFormat": "google",
+  "cSpell.words": ["ddepth", "ndarray"]
 }
