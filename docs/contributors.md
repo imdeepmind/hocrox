@@ -1,5 +1,5 @@
 ---
-title: Contributors | Hocrox
+title: Contributors
 description: A list of all the people that worked on making Hocrox library.
 authors:
   - Abhishek Chatterjee

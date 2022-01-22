@@ -1,4 +1,4 @@
-site_name: Hocrox - Image Preprocessing and Augmentation Library
+site_name: Hocrox
 site_description: Hocrox is an image preprocessing and augmentation library. It provides a Keras like simple interface to make preprocessing and augmentation pipelines.
 site_author: Abhishek Chatterjee
 copyright: Copyright 2021 Abhishek Chatterjee
