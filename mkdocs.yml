@@ -7,6 +7,7 @@ edit_uri: https://github.com/imdeepmind/hocrox/tree/main/docs/
 plugins:
   - search
   - mkdocstrings
+  - mkdocs-video
 theme:
   name: material
   palette:
