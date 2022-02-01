@@ -1,4 +1,4 @@
-site_name: Hocrox - Image Preprocessing and Augmentation Library
+site_name: Hocrox
 site_description: Hocrox is an image preprocessing and augmentation library. It provides a Keras like simple interface to make preprocessing and augmentation pipelines.
 site_author: Abhishek Chatterjee
 copyright: Copyright 2021 Abhishek Chatterjee
@@ -7,8 +7,22 @@ edit_uri: https://github.com/imdeepmind/hocrox/tree/main/docs/
 plugins:
   - search
   - mkdocstrings
+  - mkdocs-video
 theme:
   name: material
+  palette:
+    - sheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
 nav:
   - Home: "index.md"
   - Install: "install.md"
@@ -25,3 +39,12 @@ site_dir: site
 extra:
   version:
     provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/imdeepmind
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/imdeepmind
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/imdeepmind/
+    - icon: fontawesome/brands/instagram
+      link: https://instagram.com/imdeepmind

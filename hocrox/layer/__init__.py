@@ -28,6 +28,7 @@ Currently, in Hocrox, there are several supported layers. The complete list is b
         - Padding
         - Resize
         - Rotate
+        - Convolution
 - Augmentation
     - Color
         - RandomBrightness

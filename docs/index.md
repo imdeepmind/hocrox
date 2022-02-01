@@ -1,5 +1,5 @@
 ---
-title: Home | Hocrox
+title: Home
 description: Hocrox is an image preprocessing and augmentation library. It provides a Keras like simple interface to make preprocessing and augmentation pipelines.
 authors:
   - Abhishek Chatterjee
@@ -8,6 +8,8 @@ authors:
 # Hocrox
 
 An image preprocessing and augmentation library with Keras like interface.
+
+![type:video](https://www.youtube.com/embed/Rwh0VMr6A3E)
 
 [![Hocrox Code Check](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml/badge.svg)](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml)
 ![Maitained](https://img.shields.io/badge/Maitained%3F-Yes-brightgreen)
