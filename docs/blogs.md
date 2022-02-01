@@ -7,4 +7,4 @@ authors:
 
 # Blogs
 
-Currently there is no blog available for Hocrox.
+- [Introducing Hocrox: An image preprocessing and augmentation library with Keras like interface](https://medium.com/@imdeepmind/introducing-hocrox-an-image-preprocessing-and-augmentation-library-with-keras-like-interface-a8130211b09a)
