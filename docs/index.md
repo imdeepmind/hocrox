@@ -5,11 +5,12 @@ authors:
   - Abhishek Chatterjee
 ---
 
-# Hocrox
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/34741145/152690507-6781c960-1a6f-48f7-a038-4a09dc017f33.png" alt="Logo of Hocrox" />
+ <br />
+</p>
 
 An image preprocessing and augmentation library with Keras like interface.
-
-![type:video](https://www.youtube.com/embed/Rwh0VMr6A3E)
 
 [![Hocrox Code Check](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml/badge.svg)](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml)
 ![Maitained](https://img.shields.io/badge/Maitained%3F-Yes-brightgreen)
@@ -28,6 +29,9 @@ Here are some of the highlights of Hocrox:
 - Provides an easy interface that is suitable for radio pipeline development
 - It internally uses OpenCV
 - Highly configurable with support for custom layers
+
+
+![type:video](https://www.youtube.com/embed/Rwh0VMr6A3E)
 
 ## The Keas interface
 
