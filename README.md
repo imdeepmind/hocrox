@@ -1,8 +1,8 @@
-# Hocrox
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/34741145/152690507-6781c960-1a6f-48f7-a038-4a09dc017f33.png" alt="Logo of Hocrox" />
+ <br />
 An image preprocessing and augmentation library with Keras like interface.
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Rwh0VMr6A3E/0.jpg)](https://www.youtube.com/watch?v=Rwh0VMr6A3E)
+</p>
 
 [![Hocrox Code Check](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml/badge.svg)](https://github.com/imdeepmind/hocrox/actions/workflows/build_check.yml)
 ![Maitained](https://img.shields.io/badge/Maitained%3F-Yes-brightgreen)
@@ -11,6 +11,21 @@ An image preprocessing and augmentation library with Keras like interface.
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/imdeepmind/hocrox?style=flat)
 ![GitHub issues](https://img.shields.io/github/issues/imdeepmind/hocrox?style=flat)
 ![GitHub](https://img.shields.io/github/license/imdeepmind/hocrox?style=flat)
+
+
+## Table of contents:
+- [Table of contents:](#table-of-contents)
+- [Introduction](#introduction)
+- [The Keas interface](#the-keas-interface)
+- [Install](#install)
+- [Dependencies](#dependencies)
+- [Documentation](#documentation)
+- [Example](#example)
+- [Blogs and Tutorials](#blogs-and-tutorials)
+- [Support](#support)
+- [Contributors](#contributors)
+- [License](#license)
+
 
 ## Introduction
 
@@ -91,6 +106,19 @@ print(model.summary())
 model.transform()
 
 ```
+
+## Blogs and Tutorials
+Check this video to learn more about Hocrox.
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=Rwh0VMr6A3E">
+        <img src="https://img.youtube.com/vi/Rwh0VMr6A3E/0.jpg" alt="Introduction to Hocrox" />
+    </a>
+</p>
+
+## Support
+If you are facing any issues using Hocrox, then please raise an issue on GitHub or post something on the discussion section.
+
+Alternatively, you can send email to.
 
 ## Contributors
 
