@@ -1,6 +1,8 @@
 """Layer class is used to make layers for Hocrox."""
 import random
 
+__all__ = ["Layer"]
+
 
 class Layer:
     """Layer class is used to make layers for Hocrox.
