@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["AverageBlur"]
+
 
 class AverageBlur(Layer):
     """AverageBlur layer blur (image smoothing) an image using a normalized box filter.

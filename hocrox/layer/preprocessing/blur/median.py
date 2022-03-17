@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["MedianBlur"]
+
 
 class MedianBlur(Layer):
     """MedianBlur layer blur (image smoothing) an image using median filter.

@@ -4,6 +4,8 @@ import numpy as np
 
 from hocrox.utils import Layer
 
+__all__ = ["RandomChannelShift"]
+
 
 class RandomChannelShift(Layer):
     """RandomChannelShift layer randomly adds some value to the channels in the image.

@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["HorizontalShift"]
+
 
 class HorizontalShift(Layer):
     """HorizontalShift layer shifts the image horizontally.

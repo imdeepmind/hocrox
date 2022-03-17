@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["GaussianBlur"]
+
 
 class GaussianBlur(Layer):
     """GaussianBlur layer blur (image smoothing) an image using a gaussian filter.

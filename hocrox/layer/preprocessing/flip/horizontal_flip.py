@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["HorizontalFlip"]
+
 
 class HorizontalFlip(Layer):
     """HorizontalFlip layer horizontally flips an image.

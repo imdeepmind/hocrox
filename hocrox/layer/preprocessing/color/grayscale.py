@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["Grayscale"]
+
 
 class Grayscale(Layer):
     """Grayscale layer grayscaled an image.

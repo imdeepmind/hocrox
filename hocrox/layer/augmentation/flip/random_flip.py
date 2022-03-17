@@ -4,6 +4,8 @@ import random
 
 from hocrox.utils import Layer
 
+__all__ = ["RandomFlip"]
+
 
 class RandomFlip(Layer):
     """RandomFlip layer randomly flips an image vertically or horizontally.

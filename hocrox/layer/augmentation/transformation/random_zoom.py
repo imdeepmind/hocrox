@@ -4,6 +4,8 @@ import random
 
 from hocrox.utils import Layer
 
+__all__ = ["RandomZoom"]
+
 
 class RandomZoom(Layer):
     """RandomZoom layer randomly zooms an image based on the defined zoom range.

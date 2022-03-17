@@ -1,6 +1,8 @@
 """Crop layer for Hocrox."""
 from hocrox.utils import Layer
 
+__all__ = ["Crop"]
+
 
 class Crop(Layer):
     """Crop layer crops an image.

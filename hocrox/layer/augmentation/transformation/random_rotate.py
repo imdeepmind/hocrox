@@ -5,6 +5,8 @@ import numpy as np
 
 from hocrox.utils import Layer
 
+__all__ = ["RandomRotate"]
+
 
 class RandomRotate(Layer):
     """RandomRotate layer randomly rotates an image to a certain angle.

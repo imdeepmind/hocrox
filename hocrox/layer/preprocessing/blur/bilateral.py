@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["BilateralBlur"]
+
 
 class BilateralBlur(Layer):
     """BilateralBlur layer blur (image smoothing) an image using an bilateral filter.
