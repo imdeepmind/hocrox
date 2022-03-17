@@ -3,13 +3,15 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["Padding"]
+
 
 class Padding(Layer):
     """Padding layer adds padding to an image.
 
     Here is an example code to use the Padding layer in a model.
 
-    ```python
+    ```pythond
     from hocrox.model import Model
     from hocrox.layer.preprocessing.transformation import Padding
     from hocrox.layer import Read
