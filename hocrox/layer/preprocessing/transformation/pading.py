@@ -11,7 +11,7 @@ class Padding(Layer):
 
     Here is an example code to use the Padding layer in a model.
 
-    ```pythond
+    ```python
     from hocrox.model import Model
     from hocrox.layer.preprocessing.transformation import Padding
     from hocrox.layer import Read
