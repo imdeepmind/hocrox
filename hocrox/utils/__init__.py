@@ -5,3 +5,5 @@ This module contains some utility classes and functions.
 
 from .layer import Layer
 from .is_valid_layer import is_valid_layer
+
+__all__ = ["Layer", "is_valid_layer"]

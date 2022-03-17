@@ -4,6 +4,8 @@ import numpy as np
 
 from hocrox.utils import Layer
 
+__all__ = ["Rotate"]
+
 
 class Rotate(Layer):
     """Grayscale layer grayscaled an image.

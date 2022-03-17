@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["RandomVerticalFlip"]
+
 
 class RandomVerticalFlip(Layer):
     """RandomVerticalFlip layer randomly flips an image vertically.

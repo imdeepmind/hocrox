@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["Resize"]
+
 
 class Resize(Layer):
     """Resize layer resize an image to a specific dimension.

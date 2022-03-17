@@ -1,6 +1,8 @@
 """Rescale layer for Hocrox."""
 from hocrox.utils import Layer
 
+__all__ = ["Rescale"]
+
 
 class Rescale(Layer):
     """Rescale layer rescales an image.

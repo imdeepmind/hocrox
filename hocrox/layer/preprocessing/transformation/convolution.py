@@ -3,6 +3,8 @@ import numpy as np
 import cv2
 from hocrox.utils import Layer
 
+__all__ = ["Convolution"]
+
 
 class Convolution(Layer):
     """Convolution layer convolves an image with the kernel.

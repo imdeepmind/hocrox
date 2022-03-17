@@ -4,6 +4,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["RandomVerticalShift"]
+
 
 class RandomVerticalShift(Layer):
     """RandomVerticalShift layer randomly shifts the image vertically.

@@ -4,6 +4,8 @@ import numpy as np
 
 from hocrox.utils import Layer
 
+__all__ = ["Brightness"]
+
 
 class Brightness(Layer):
     """RandomBrightness layer changes the brightness of the image based on the provided level.

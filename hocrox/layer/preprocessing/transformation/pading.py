@@ -3,6 +3,8 @@ import cv2
 
 from hocrox.utils import Layer
 
+__all__ = ["Padding"]
+
 
 class Padding(Layer):
     """Padding layer adds padding to an image.

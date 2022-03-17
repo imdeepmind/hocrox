@@ -7,6 +7,8 @@ from tqdm import tqdm
 
 from hocrox.utils import is_valid_layer
 
+__all__ = ["Model"]
+
 
 class Model:
     """Model class is used for making Hocrox models.

@@ -3,6 +3,8 @@ import numpy as np
 
 from hocrox.utils import Layer
 
+__all__ = ["ChannelShift"]
+
 
 class ChannelShift(Layer):
     """ChannelShift layer adds a value to the channels in the image.
